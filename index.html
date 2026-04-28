@@ -1,695 +1,568 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Attendance Tracker — Plan Smart. Bunk Smarter.</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Attendance Tracker — by Garvit Goyal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <style>
-    /* ═══════════════════════════════════════════
-       ATTENDANCE TRACKER — All styles inline
-    ═══════════════════════════════════════════ */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#04060a;--surface:#0b1017;--surface2:#111820;--surface3:#182028;
+      --border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.11);
+      --text:#eef2f8;--text2:#7a8fa8;--text3:#2e4055;
+      --blue:#4da3ff;--blue2:#1a65d4;--blue-glow:rgba(77,163,255,0.2);
+      --green:#20e080;--red:#ff4f4f;--red-glow:rgba(255,79,79,0.15);
+      --gold:#ffc040;--purple:#b48eff;
+      --logo-color:#ffffff;
+      --r:14px;--r2:9px;
+      --sans:'Space Grotesk',sans-serif;--body:'Inter',sans-serif;
+      --ease:0.28s cubic-bezier(0.4,0,0.2,1)
+    }
+    [data-theme="light"]{
+      --bg:#ecf1f8;--surface:#ffffff;--surface2:#f2f6fb;--surface3:#e8eef6;
+      --border:rgba(0,0,0,0.07);--border2:rgba(0,0,0,0.13);
+      --text:#0a0f17;--text2:#4d6070;--text3:#b8cad8;
+      --blue:#1760c8;--blue2:#1050aa;--blue-glow:rgba(23,96,200,0.12);
+      --green:#10a858;--red:#cc2c2c;--red-glow:rgba(204,44,44,0.1);
+      --logo-color:#0a0f17;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:var(--body);background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;transition:background var(--ease),color var(--ease)}
 
-    :root {
-      --bg:          #080c10;
-      --surface:     #0d1117;
-      --surface-2:   #131a22;
-      --border:      rgba(255,255,255,0.07);
-      --border-2:    rgba(255,255,255,0.12);
-      --text:        #e8edf2;
-      --text-muted:  #5a6a7a;
-      --text-dim:    #2e3d4d;
-      --accent:      #3b9eff;
-      --accent-glow: rgba(59,158,255,0.25);
-      --safe:        #22d07a;
-      --safe-glow:   rgba(34,208,122,0.2);
-      --warn:        #ff6b6b;
-      --warn-glow:   rgba(255,107,107,0.2);
-      --gold:        #f5c842;
-      --radius:      12px;
-      --radius-sm:   8px;
-      --font-display: 'Syne', sans-serif;
-      --font-mono:    'JetBrains Mono', monospace;
-      --transition:  0.25s cubic-bezier(0.4,0,0.2,1);
-    }
+    /* SVG logo color adapts via CSS */
+    .logo-svg{color:var(--logo-color);transition:color var(--ease)}
 
-    [data-theme="light"] {
-      --bg:          #f0f4f8;
-      --surface:     #ffffff;
-      --surface-2:   #e8eef5;
-      --border:      rgba(0,0,0,0.08);
-      --border-2:    rgba(0,0,0,0.14);
-      --text:        #0d1117;
-      --text-muted:  #6b7a8d;
-      --text-dim:    #b0bec8;
-      --accent:      #1a7fe8;
-      --accent-glow: rgba(26,127,232,0.15);
-      --safe:        #16a65f;
-      --safe-glow:   rgba(22,166,95,0.12);
-      --warn:        #d94040;
-      --warn-glow:   rgba(217,64,64,0.12);
-    }
+    /* BG */
+    .bg-wrap{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+    .orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.1;animation:drift 14s ease-in-out infinite alternate}
+    .orb1{width:560px;height:560px;background:#4da3ff;top:-120px;right:-120px}
+    .orb2{width:380px;height:380px;background:#b48eff;bottom:60px;left:-100px;animation-delay:-5s}
+    .orb3{width:280px;height:280px;background:#20e080;bottom:-60px;right:180px;animation-delay:-10s}
+    [data-theme="light"] .orb{opacity:.05}
+    @keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(28px,48px) scale(1.1)}}
 
-    html { scroll-behavior: smooth; }
+    /* RIBBON */
+    .ribbon{position:relative;z-index:20;background:linear-gradient(90deg,var(--blue2),var(--purple));padding:.42rem 0;overflow:hidden}
+    .ribbon-track{display:flex;width:max-content;animation:marquee 26s linear infinite}
+    @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    .ribbon-item{font-size:.7rem;font-weight:700;letter-spacing:.08em;color:#fff;padding:0 1.8rem;white-space:nowrap}
 
-    body {
-      font-family: var(--font-display);
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      position: relative;
-      overflow-x: hidden;
-      transition: background var(--transition), color var(--transition);
-    }
+    /* HEADER */
+    .header{position:sticky;top:0;z-index:100;backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);background:rgba(4,6,10,.82);border-bottom:1px solid var(--border2)}
+    [data-theme="light"] .header{background:rgba(236,241,248,.9)}
+    .header-inner{max-width:960px;margin:0 auto;padding:.85rem 1.75rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
 
-    /* Background */
-    .bg-grid {
-      position: fixed; inset: 0;
-      background-image:
-        linear-gradient(rgba(59,158,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(59,158,255,0.03) 1px, transparent 1px);
-      background-size: 40px 40px;
-      pointer-events: none; z-index: 0;
-    }
-    .bg-glow {
-      position: fixed; top: -200px; right: -200px;
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(59,158,255,0.08) 0%, transparent 70%);
-      pointer-events: none; z-index: 0;
-      animation: glowDrift 8s ease-in-out infinite alternate;
-    }
-    [data-theme="light"] .bg-glow {
-      background: radial-gradient(circle, rgba(26,127,232,0.07) 0%, transparent 70%);
-    }
-    @keyframes glowDrift {
-      from { transform: translate(0,0); }
-      to   { transform: translate(-40px, 60px); }
-    }
+    .brand{display:flex;align-items:center;gap:.9rem}
 
-    /* Header */
-    .header {
-      position: sticky; top: 0; z-index: 100;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      background: rgba(8,12,16,0.85);
-      border-bottom: 1px solid var(--border);
-      transition: background var(--transition);
+    /* Logo box in header */
+    .hdr-logo{
+      width:46px;height:46px;flex-shrink:0;
+      border-radius:10px;
+      border:1.5px solid var(--border2);
+      background:var(--surface2);
+      display:flex;align-items:center;justify-content:center;
+      padding:5px;
+      box-shadow:0 0 16px var(--blue-glow);
+      overflow:hidden;
     }
-    [data-theme="light"] .header { background: rgba(240,244,248,0.85); }
+    .hdr-logo svg{width:100%;height:100%}
 
-    .header-inner {
-      max-width: 780px; margin: 0 auto;
-      padding: 0.9rem 1.5rem;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .logo-group { display: flex; align-items: center; gap: 0.75rem; }
-    .logo-icon {
-      font-size: 1.8rem; color: var(--accent);
-      filter: drop-shadow(0 0 8px var(--accent-glow));
-      animation: spin 10s linear infinite;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .site-title { font-size: 1.15rem; font-weight: 800; letter-spacing: -0.02em; color: var(--text); line-height: 1; }
-    .site-sub { font-size: 0.65rem; font-family: var(--font-mono); color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 2px; }
-    .site-credit { font-size: 0.95rem; font-family: var(--font-mono); color: var(--text); letter-spacing: 0.1em; margin-top: 3px; font-weight: 700; }
+    .brand-text{display:flex;flex-direction:column;gap:1px}
+    .brand-name{font-family:var(--sans);font-size:1.05rem;font-weight:700;color:var(--text);letter-spacing:-.02em;line-height:1}
+    .brand-sub{font-size:.62rem;font-weight:600;color:var(--blue);letter-spacing:.03em}
+    .brand-by{font-size:.62rem;font-weight:500;color:var(--text2)}
+    .brand-by strong{color:var(--purple)}
 
-    .theme-toggle {
-      background: var(--surface-2); border: 1px solid var(--border-2);
-      border-radius: 50%; width: 38px; height: 38px;
-      cursor: pointer; display: flex; align-items: center; justify-content: center;
-      font-size: 1rem; transition: all var(--transition); color: var(--text);
-    }
-    .theme-toggle:hover { border-color: var(--accent); box-shadow: 0 0 12px var(--accent-glow); transform: scale(1.05); }
+    .hdr-right{display:flex;align-items:center;gap:.65rem}
+    .badge{display:flex;align-items:center;gap:.45rem;background:var(--surface2);border:1px solid var(--border2);border-radius:99px;padding:.3rem .85rem;font-size:.7rem;font-weight:600;color:var(--text2);white-space:nowrap}
+    .badge .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 7px var(--green);animation:blink 2s ease infinite}
+    @keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.75)}}
+    .badge strong{color:var(--text)}
+    .icon-btn{width:36px;height:36px;border-radius:9px;background:var(--surface2);border:1px solid var(--border2);cursor:pointer;color:var(--text2);font-size:1rem;display:flex;align-items:center;justify-content:center;transition:all var(--ease)}
+    .icon-btn:hover{border-color:var(--blue);color:var(--blue);box-shadow:0 0 12px var(--blue-glow)}
+    @media(max-width:580px){.badge{display:none}.header-inner{padding:.75rem 1rem}}
 
-    /* Main */
-    .main {
-      max-width: 780px; margin: 0 auto;
-      padding: 2rem 1.5rem 4rem;
-      display: flex; flex-direction: column; gap: 1.5rem;
-      position: relative; z-index: 1;
-    }
+    /* HERO */
+    .hero{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:2.8rem 1.75rem 1.8rem;text-align:center}
 
-    /* Cards */
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 2rem; position: relative; overflow: hidden;
-      transition: background var(--transition), border-color var(--transition);
-      animation: slideUp 0.5s var(--transition) both;
+    /* Big hero logo */
+    .hero-logo-ring{
+      width:120px;height:120px;
+      margin:0 auto 1.3rem;
+      border-radius:50%;
+      background:linear-gradient(135deg,var(--blue),var(--purple));
+      display:flex;align-items:center;justify-content:center;
+      padding:3px;
+      box-shadow:0 0 40px var(--blue-glow),0 8px 32px rgba(0,0,0,.3);
+      animation:heroPop .65s cubic-bezier(.34,1.56,.64,1) both;
     }
-    .input-card    { animation-delay: 0.05s; }
-    .status-card   { animation-delay: 0.12s; }
-    .simulator-card{ animation-delay: 0.19s; }
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
+    @keyframes heroPop{from{transform:scale(.5);opacity:0}to{transform:scale(1);opacity:1}}
+    .hero-logo-inner{
+      width:100%;height:100%;border-radius:50%;
+      background:var(--surface);
+      display:flex;align-items:center;justify-content:center;
+      padding:12px;
     }
-    .card::before {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(59,158,255,0.03) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    .card-label { font-family: var(--font-mono); font-size: 0.65rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
-    .card-title { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em; color: var(--text); margin-bottom: 1.5rem; }
-    .card-desc  { font-size: 0.8rem; color: var(--text-muted); margin-top: -1rem; margin-bottom: 1.5rem; }
+    .hero-logo-inner svg{width:100%;height:100%}
 
-    /* Fields */
-    .fields { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
-    @media (max-width: 600px) { .fields { grid-template-columns: 1fr; } }
-    .field-group { display: flex; flex-direction: column; gap: 0.4rem; }
-    .field-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; color: var(--text-muted); text-transform: uppercase; }
-    .input-wrap  { position: relative; display: flex; align-items: center; }
-    .field-input {
-      width: 100%; background: var(--surface-2);
-      border: 1px solid var(--border-2); border-radius: var(--radius-sm);
-      padding: 0.65rem 2.8rem 0.65rem 0.85rem;
-      font-family: var(--font-mono); font-size: 1rem; font-weight: 500;
-      color: var(--text); outline: none; transition: all var(--transition);
-      -moz-appearance: textfield;
-    }
-    .field-input::-webkit-outer-spin-button,
-    .field-input::-webkit-inner-spin-button { -webkit-appearance: none; }
-    .field-input::placeholder { color: var(--text-dim); }
-    .field-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
-    .field-input.error { border-color: var(--warn); box-shadow: 0 0 0 3px var(--warn-glow); }
-    .input-unit {
-      position: absolute; right: 0.6rem;
-      font-family: var(--font-mono); font-size: 0.6rem; font-weight: 600;
-      color: var(--text-dim); text-transform: uppercase; pointer-events: none; letter-spacing: 0.04em;
-    }
-    .field-hint { font-size: 0.65rem; color: var(--text-dim); }
+    .hero-pill{display:inline-flex;align-items:center;gap:.4rem;background:var(--surface2);border:1px solid var(--border2);border-radius:99px;padding:.28rem .9rem;font-size:.67rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--blue);margin-bottom:1rem}
+    .hero-h1{font-family:var(--sans);font-size:clamp(2rem,5.5vw,3.2rem);font-weight:800;letter-spacing:-.03em;line-height:1.1;color:var(--text);margin-bottom:.85rem}
+    .grad{background:linear-gradient(135deg,var(--blue) 0%,var(--purple) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero-p{font-size:.93rem;color:var(--text2);line-height:1.65;max-width:450px;margin:0 auto .7rem}
+    .hero-credit{font-size:.74rem;font-weight:600;color:var(--text3)}
+    .hero-credit strong{color:var(--purple);font-size:.79rem}
 
-    /* Error */
-    .error-banner {
-      margin-top: 1rem; padding: 0.75rem 1rem;
-      background: rgba(255,107,107,0.08); border: 1px solid rgba(255,107,107,0.25);
-      border-radius: var(--radius-sm); font-family: var(--font-mono); font-size: 0.75rem;
-      color: var(--warn); display: flex; align-items: center; gap: 0.5rem;
-    }
-    .error-banner::before { content: '⚠'; }
+    /* HOW */
+    .how{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:0 1.75rem 1.75rem}
+    .how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem}
+    @media(max-width:600px){.how-grid{grid-template-columns:1fr}}
+    .how-step{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1rem;display:flex;align-items:flex-start;gap:.7rem}
+    .how-num{width:30px;height:30px;border-radius:7px;flex-shrink:0;background:linear-gradient(135deg,var(--blue2),var(--purple));display:flex;align-items:center;justify-content:center;font-family:var(--sans);font-size:.82rem;font-weight:800;color:#fff}
+    .how-title{font-family:var(--sans);font-size:.82rem;font-weight:700;color:var(--text);margin-bottom:2px}
+    .how-desc{font-size:.68rem;color:var(--text2);line-height:1.5}
 
-    /* Ring */
-    .ring-wrap { position: relative; width: 150px; height: 150px; margin: 0 auto 1.75rem; }
-    .ring-svg  { width: 100%; height: 100%; transform: rotate(-90deg); }
-    .ring-bg   { fill: none; stroke: var(--surface-2); stroke-width: 10; }
-    .ring-fg   {
-      fill: none; stroke: var(--accent); stroke-width: 10; stroke-linecap: round;
-      transition: stroke-dashoffset 0.6s cubic-bezier(0.4,0,0.2,1), stroke 0.4s ease;
-      filter: drop-shadow(0 0 6px var(--accent));
-    }
-    .ring-label { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-    .ring-pct   { font-family: var(--font-mono); font-size: 1.7rem; font-weight: 600; color: var(--text); line-height: 1; }
-    .ring-sub   { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-top: 4px; }
+    /* DIVIDER */
+    .divider{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:0 1.75rem 1.2rem;display:flex;align-items:center;gap:.75rem}
+    @media(max-width:600px){.divider{padding:0 1rem 1rem}}
+    .div-line{flex:1;height:1px;background:var(--border)}
+    .div-txt{font-size:.58rem;font-weight:700;color:var(--text3);letter-spacing:.14em;text-transform:uppercase;white-space:nowrap}
 
-    /* Progress bar */
-    .progress-section { margin-bottom: 1.5rem; }
-    .progress-meta { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.62rem; color: var(--text-muted); margin-bottom: 0.4rem; }
-    .progress-track { height: 8px; background: var(--surface-2); border-radius: 99px; position: relative; overflow: visible; }
-    .progress-fill  {
-      height: 100%; border-radius: 99px;
-      background: linear-gradient(90deg, var(--accent) 0%, #80cfff 100%);
-      width: 0%; transition: width 0.6s cubic-bezier(0.4,0,0.2,1), background 0.4s ease;
-      position: relative; z-index: 1;
-    }
-    .progress-marker {
-      position: absolute; top: 50%; transform: translate(-50%, -50%);
-      width: 3px; height: 16px; background: var(--gold); border-radius: 2px;
-      z-index: 2; transition: left 0.4s ease;
-    }
+    /* MAIN */
+    .main{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:0 1.75rem 5rem;display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+    @media(max-width:700px){.main{grid-template-columns:1fr;padding:0 1rem 4rem}}
+    .card-input{grid-column:1;grid-row:1}.card-status{grid-column:2;grid-row:1}.card-sim{grid-column:1/-1;grid-row:2}
+    @media(max-width:700px){.card-input,.card-status,.card-sim{grid-column:1;grid-row:auto}}
 
-    /* Verdict */
-    .verdict {
-      padding: 1.25rem; border-radius: var(--radius-sm);
-      border: 1px solid var(--border); background: var(--surface-2);
-      margin-bottom: 1.5rem; text-align: center; transition: all var(--transition);
+    /* CARDS */
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1.6rem;position:relative;overflow:hidden;transition:background var(--ease),border-color var(--ease),transform var(--ease),box-shadow var(--ease);animation:slideUp .5s ease both}
+    .card-input{animation-delay:.05s}.card-status{animation-delay:.1s}.card-sim{animation-delay:.15s}
+    @keyframes slideUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+    .card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--purple));opacity:0;transition:opacity var(--ease);border-radius:var(--r) var(--r) 0 0}
+    .card:hover{border-color:var(--border2);box-shadow:0 10px 44px rgba(0,0,0,.22);transform:translateY(-2px)}
+    .card:hover::after{opacity:1}
+    .card-hdr{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.4rem}
+    .card-ico{width:36px;height:36px;border-radius:8px;background:var(--surface2);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+    .card-eye{font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:3px}
+    .card-ttl{font-family:var(--sans);font-size:1rem;font-weight:700;color:var(--text);letter-spacing:-.02em}
+
+    /* FIELDS */
+    .field{margin-bottom:1rem}.field:last-of-type{margin-bottom:0}
+    .f-lbl{display:block;font-size:.68rem;font-weight:700;color:var(--text2);letter-spacing:.04em;text-transform:uppercase;margin-bottom:.4rem}
+    .f-lbl em{font-style:normal;color:var(--text3);font-weight:400;text-transform:none;font-size:.66rem}
+    .f-row{position:relative}
+    .f-input{width:100%;padding:.68rem 3rem .68rem .85rem;background:var(--surface2);border:1.5px solid var(--border2);border-radius:var(--r2);color:var(--text);font-family:var(--body);font-size:.95rem;font-weight:500;outline:none;transition:all var(--ease);-moz-appearance:textfield}
+    .f-input::-webkit-outer-spin-button,.f-input::-webkit-inner-spin-button{-webkit-appearance:none}
+    .f-input::placeholder{color:var(--text3)}
+    .f-input:focus{border-color:var(--blue);background:var(--surface3);box-shadow:0 0 0 3px var(--blue-glow)}
+    .f-input.err{border-color:var(--red);box-shadow:0 0 0 3px var(--red-glow)}
+    .f-suf{position:absolute;right:.7rem;top:50%;transform:translateY(-50%);font-size:.58rem;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;pointer-events:none}
+    .err-box{margin-top:.9rem;padding:.65rem .85rem;background:rgba(255,79,79,.07);border:1px solid rgba(255,79,79,.22);border-radius:var(--r2);font-size:.72rem;color:var(--red);display:flex;align-items:flex-start;gap:.45rem}
+    .err-box::before{content:"⚠";flex-shrink:0}
+
+    /* RING */
+    .ring-outer{display:flex;justify-content:center;margin-bottom:1.1rem}
+    .ring-wrap{position:relative;width:138px;height:138px}
+    .ring-svg{width:100%;height:100%;transform:rotate(-90deg)}
+    .ring-track{fill:none;stroke:var(--surface2);stroke-width:12}
+    .ring-fill{fill:none;stroke:var(--blue);stroke-width:12;stroke-linecap:round;stroke-dasharray:314;stroke-dashoffset:314;transition:stroke-dashoffset .7s cubic-bezier(.4,0,.2,1),stroke .4s;filter:drop-shadow(0 0 8px var(--blue))}
+    .ring-mid{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+    .ring-pct{font-family:var(--sans);font-size:1.75rem;font-weight:800;color:var(--text);line-height:1;letter-spacing:-.03em}
+    .ring-lbl{font-size:.56rem;font-weight:700;color:var(--text2);letter-spacing:.1em;text-transform:uppercase;margin-top:3px}
+
+    /* PROGRESS */
+    .prog-sec{margin-bottom:1.1rem}
+    .prog-meta{display:flex;justify-content:space-between;font-size:.6rem;font-weight:600;color:var(--text3);margin-bottom:.4rem}
+    .prog-track{height:7px;background:var(--surface2);border-radius:99px;position:relative;overflow:visible}
+    .prog-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--blue),#88ccff);width:0%;transition:width .6s cubic-bezier(.4,0,.2,1),background .4s}
+    .prog-marker{position:absolute;top:50%;transform:translate(-50%,-50%);width:2.5px;height:14px;background:var(--gold);border-radius:2px;z-index:2;transition:left .4s}
+    .prog-marker-lbl{position:absolute;top:100%;left:0;transform:translate(-50%,4px);font-size:.52rem;font-weight:700;color:var(--gold);white-space:nowrap}
+
+    /* VERDICT */
+    .verdict{border-radius:var(--r2);padding:1rem;border:1px solid var(--border);background:var(--surface2);text-align:center;margin-bottom:1.1rem;transition:all var(--ease)}
+    .verdict.safe{background:rgba(32,224,128,.07);border-color:rgba(32,224,128,.25)}
+    .verdict.warn{background:rgba(255,79,79,.07);border-color:rgba(255,79,79,.25)}
+    .v-idle{font-size:.75rem;color:var(--text3)}
+    .v-ico{font-size:1.8rem;display:block;margin-bottom:.3rem;animation:popIn .4s cubic-bezier(.34,1.56,.64,1)}
+    @keyframes popIn{from{transform:scale(.4);opacity:0}to{transform:scale(1);opacity:1}}
+    .v-msg{font-family:var(--sans);font-size:.88rem;font-weight:700}
+    .verdict.safe .v-msg{color:var(--green)}.verdict.warn .v-msg{color:var(--red)}
+    .v-sub{font-size:.64rem;color:var(--text2);margin-top:.22rem;line-height:1.4}
+
+    /* STATS */
+    .stats{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
+    .sbox{background:var(--surface2);border:1px solid var(--border);border-radius:var(--r2);padding:.7rem .8rem;transition:border-color var(--ease)}
+    .sbox:hover{border-color:var(--blue)}
+    .s-val{font-family:var(--sans);font-size:.98rem;font-weight:700;color:var(--text);display:block}
+    .s-key{font-size:.57rem;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.09em;margin-top:2px;display:block}
+
+    /* SIMULATOR */
+    .sim-grid{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-bottom:1.1rem}
+    @media(max-width:460px){.sim-grid{grid-template-columns:1fr}}
+    .sim-result{background:var(--surface2);border:1px solid var(--border);border-radius:var(--r2);padding:1.05rem}
+    .sim-idle{font-size:.72rem;color:var(--text3);text-align:center}
+    .sim-out{display:grid;grid-template-columns:repeat(3,1fr);gap:.65rem}
+    @media(max-width:500px){.sim-out{grid-template-columns:1fr 1fr}}
+    .sim-col{text-align:center;display:flex;flex-direction:column;gap:3px}
+    .sim-val{font-family:var(--sans);font-size:1.15rem;font-weight:700;color:var(--text)}
+    .sim-val.up{color:var(--green)}.sim-val.down{color:var(--red)}
+    .sim-key{font-size:.56rem;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.09em}
+    .sim-chg{font-size:.62rem;font-weight:600}
+    .sim-chg.up{color:var(--green)}.sim-chg.down{color:var(--red)}.sim-chg.same{color:var(--text3)}
+
+    /* FOOTER */
+    .footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:2.2rem 1.75rem}
+    .footer-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.25rem}
+    .f-brand{display:flex;align-items:center;gap:.85rem}
+    .f-logo-ring{
+      width:46px;height:46px;border-radius:50%;flex-shrink:0;
+      background:linear-gradient(135deg,var(--blue2),var(--purple));
+      padding:2px;box-shadow:0 0 14px var(--blue-glow);
     }
-    .verdict-placeholder { font-size: 0.8rem; color: var(--text-dim); font-family: var(--font-mono); }
-    .verdict.safe { background: rgba(34,208,122,0.07); border-color: rgba(34,208,122,0.3); }
-    .verdict.warn { background: rgba(255,107,107,0.07); border-color: rgba(255,107,107,0.3); }
-    .verdict-emoji { font-size: 2rem; display: block; margin-bottom: 0.4rem; animation: pop 0.4s cubic-bezier(0.34,1.56,0.64,1); }
-    @keyframes pop { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-    .verdict-msg    { font-size: 0.95rem; font-weight: 700; letter-spacing: -0.01em; }
-    .verdict.safe .verdict-msg { color: var(--safe); }
-    .verdict.warn .verdict-msg { color: var(--warn); }
-    .verdict-detail { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); margin-top: 0.35rem; }
+    .f-logo-inner{width:100%;height:100%;border-radius:50%;background:var(--surface);display:flex;align-items:center;justify-content:center;padding:5px}
+    .f-logo-inner svg{width:100%;height:100%}
+    .f-name{font-family:var(--sans);font-size:.93rem;font-weight:700;color:var(--text)}
+    .f-role{font-size:.64rem;color:var(--text2);margin-top:2px}
+    .f-role strong{color:var(--purple)}
+    .f-right{text-align:right}
+    .f-copy{font-size:.67rem;color:var(--text3)}.f-copy strong{color:var(--blue)}
+    .f-tag{font-size:.65rem;color:var(--text3);margin-top:3px;font-style:italic}
+    @media(max-width:580px){.footer-inner{flex-direction:column;align-items:flex-start}.f-right{text-align:left}.footer{padding:2rem 1rem}}
 
-    /* Stats */
-    .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; }
-    @media (max-width: 480px) { .stats-row { grid-template-columns: repeat(2, 1fr); } }
-    .stat {
-      background: var(--surface-2); border: 1px solid var(--border);
-      border-radius: var(--radius-sm); padding: 0.75rem; text-align: center;
-      display: flex; flex-direction: column; gap: 0.3rem; transition: border-color var(--transition);
-    }
-    .stat:hover { border-color: var(--accent); }
-    .stat-val { font-family: var(--font-mono); font-size: 1.05rem; font-weight: 600; color: var(--text); }
-    .stat-key { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
-
-    /* Simulator */
-    .sim-fields { display: flex; align-items: flex-end; gap: 1rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
-    .sim-field  { flex: 1; min-width: 120px; display: flex; flex-direction: column; gap: 0.4rem; }
-    .sim-field .field-label em { font-style: normal; color: var(--accent); }
-    .sim-input  { padding-right: 0.85rem !important; }
-    .sim-divider { font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; padding-bottom: 0.65rem; white-space: nowrap; }
-    .sim-result { background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 1.2rem; transition: all var(--transition); }
-    .sim-placeholder { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim); text-align: center; }
-    .sim-outcome { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.75rem; text-align: center; }
-    @media (max-width: 500px) { .sim-outcome { grid-template-columns: 1fr 1fr; } }
-    .sim-col  { display: flex; flex-direction: column; gap: 0.25rem; }
-    .sim-val  { font-family: var(--font-mono); font-size: 1.3rem; font-weight: 600; color: var(--text); transition: color 0.3s ease; }
-    .sim-val.up   { color: var(--safe); }
-    .sim-val.down { color: var(--warn); }
-    .sim-val.same { color: var(--text-muted); }
-    .sim-key  { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
-    .sim-arrow { font-family: var(--font-mono); font-size: 0.7rem; margin-top: 0.15rem; }
-    .sim-arrow.up   { color: var(--safe); }
-    .sim-arrow.down { color: var(--warn); }
-
-    /* Footer */
-    .footer {
-      position: relative; z-index: 1; text-align: center;
-      padding: 2rem 1rem; border-top: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center; gap: 0.75rem;
-    }
-    .footer-hex  { font-size: 1.4rem; color: var(--accent); opacity: 0.4; }
-    .footer-text { display: flex; flex-direction: column; align-items: flex-start; }
-    .footer-name { font-weight: 700; font-size: 0.9rem; color: var(--text); letter-spacing: -0.01em; }
-    .footer-made { font-family: var(--font-mono); font-size: 0.6rem; color: var(--text-muted); letter-spacing: 0.08em; text-transform: uppercase; }
-
-    /* Responsive */
-    @media (max-width: 600px) {
-      .header-inner { padding: 0.75rem 1rem; }
-      .main { padding: 1.5rem 1rem 3rem; gap: 1rem; }
-      .card { padding: 1.5rem; }
-      .sim-fields { flex-direction: column; }
-      .sim-divider { padding-bottom: 0; }
-    }
-
-    [hidden] { display: none !important; }
+    [hidden]{display:none!important}
   </style>
 </head>
 <body>
 
-  <div class="bg-grid" aria-hidden="true"></div>
-  <div class="bg-glow" aria-hidden="true"></div>
+<div class="bg-wrap" aria-hidden="true">
+  <div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div>
+</div>
 
-  <!-- Header -->
-  <header class="header">
-    <div class="header-inner">
-      <div class="logo-group">
-        <span class="logo-icon" aria-hidden="true">⬡</span>
-        <div>
-          <h1 class="site-title">Attendance Tracker</h1>
-          <p class="site-sub">Plan smart. Bunk smarter.</p>
-          <p class="site-credit">Made by Garvit</p>
-        </div>
+<!-- Inline SVG logo template (hidden, cloned by JS) -->
+<svg id="logoTpl" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" fill="none" style="display:none">
+  <!-- Outer decorative circle -->
+  <circle cx="97" cy="103" r="86" stroke="currentColor" stroke-width="2.2" fill="none" opacity="0.4"/>
+  <!-- Large G letterform -->
+  <path d="M 168,58 A 76,76 0 1,0 168,148 L 168,108 L 126,108 L 126,124 L 151,124 L 151,148 A 76,76 0 1,1 151,58 Z"
+        stroke="currentColor" stroke-width="6.5" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+  <!-- G crossbar -->
+  <line x1="126" y1="108" x2="170" y2="108" stroke="currentColor" stroke-width="6.5" stroke-linecap="round"/>
+  <!-- Person head -->
+  <circle cx="97" cy="70" r="15" fill="currentColor" opacity="0.88"/>
+  <!-- Person shoulders/body -->
+  <path d="M 58,143 Q 58,107 97,105 Q 136,107 136,143 Z" fill="currentColor" opacity="0.88"/>
+  <!-- Divider line -->
+  <line x1="8" y1="192" x2="186" y2="192" stroke="currentColor" stroke-width="1" opacity="0.35"/>
+  <!-- GARVIT GOYAL text -->
+  <text x="97" y="217" text-anchor="middle" font-family="Georgia,Times New Roman,serif"
+        font-size="17" letter-spacing="5.5" fill="currentColor" font-weight="400" opacity="0.88">GARVIT GOYAL</text>
+</svg>
+
+<!-- RIBBON -->
+<div class="ribbon">
+  <div class="ribbon-track">
+    <span class="ribbon-item">⚡ Built by Garvit Goyal</span>
+    <span class="ribbon-item">✦ Attendance Tracker</span>
+    <span class="ribbon-item">✦ Plan Smart. Bunk Smarter.</span>
+    <span class="ribbon-item">✦ Made by Garvit</span>
+    <span class="ribbon-item">✦ Garvit Goyal</span>
+    <span class="ribbon-item">✦ Garvit's Attendance Tool</span>
+    <span class="ribbon-item">⚡ Built by Garvit Goyal</span>
+    <span class="ribbon-item">✦ Attendance Tracker</span>
+    <span class="ribbon-item">✦ Plan Smart. Bunk Smarter.</span>
+    <span class="ribbon-item">✦ Made by Garvit</span>
+    <span class="ribbon-item">✦ Garvit Goyal</span>
+    <span class="ribbon-item">✦ Garvit's Attendance Tool</span>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <div class="brand">
+      <div class="hdr-logo logo-container"></div>
+      <div class="brand-text">
+        <span class="brand-name">Attendance Tracker</span>
+        <span class="brand-sub">Plan Smart. Bunk Smarter.</span>
+        <span class="brand-by">by <strong>Garvit Goyal</strong></span>
       </div>
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-        <span id="toggleIcon">☀</span>
-      </button>
     </div>
-  </header>
+    <div class="hdr-right">
+      <div class="badge"><span class="dot"></span>Made by <strong>Garvit</strong></div>
+      <button class="icon-btn" id="themeBtn" aria-label="Toggle theme"><span id="themeIcon">☀</span></button>
+    </div>
+  </div>
+</header>
 
-  <main class="main">
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-logo-ring">
+    <div class="hero-logo-inner logo-container"></div>
+  </div>
+  <div class="hero-pill">⚡ Garvit's Attendance Tool</div>
+  <h1 class="hero-h1">Know Exactly Where<br/><span class="grad">You Stand — Instantly</span></h1>
+  <p class="hero-p">Enter your class data and get real-time answers: how many classes you can bunk, how many you must attend, and what the future looks like.</p>
+  <p class="hero-credit">Crafted with ♥ by <strong>Garvit Goyal</strong></p>
+</section>
 
-    <!-- INPUT CARD -->
-    <section class="card input-card">
-      <div class="card-label">01 — INPUT</div>
-      <h2 class="card-title">Your Attendance Data</h2>
-      <div class="fields">
-        <div class="field-group">
-          <label for="total" class="field-label">Total Classes Conducted</label>
-          <div class="input-wrap">
-            <input type="number" id="total" class="field-input" placeholder="e.g. 60" min="0" />
-            <span class="input-unit">classes</span>
-          </div>
-          <span class="field-hint">All classes held so far</span>
-        </div>
-        <div class="field-group">
-          <label for="attended" class="field-label">Classes Attended</label>
-          <div class="input-wrap">
-            <input type="number" id="attended" class="field-input" placeholder="e.g. 48" min="0" />
-            <span class="input-unit">classes</span>
-          </div>
-          <span class="field-hint">Classes you showed up for</span>
-        </div>
-        <div class="field-group">
-          <label for="required" class="field-label">Minimum Required %</label>
-          <div class="input-wrap">
-            <input type="number" id="required" class="field-input" placeholder="75" min="0" max="100" value="75" />
-            <span class="input-unit">%</span>
-          </div>
-          <span class="field-hint">Default 75% — check your institution</span>
-        </div>
-      </div>
-      <div id="inputError" class="error-banner" role="alert" aria-live="polite" hidden></div>
-    </section>
+<!-- HOW IT WORKS -->
+<div class="how">
+  <div class="how-grid">
+    <div class="how-step"><div class="how-num">1</div><div class="how-text"><div class="how-title">Enter Your Data</div><div class="how-desc">Type total classes, attended, and your required %.</div></div></div>
+    <div class="how-step"><div class="how-num">2</div><div class="how-text"><div class="how-title">See Your Status</div><div class="how-desc">Instant result — safe to bunk or classes you must attend.</div></div></div>
+    <div class="how-step"><div class="how-num">3</div><div class="how-text"><div class="how-title">Simulate Future</div><div class="how-desc">Use Garvit's What-If tool to plan ahead with confidence.</div></div></div>
+  </div>
+</div>
 
-    <!-- STATUS CARD -->
-    <section class="card status-card">
-      <div class="card-label">02 — STATUS</div>
-      <h2 class="card-title">Current Standing</h2>
+<!-- DIVIDER -->
+<div class="divider">
+  <div class="div-line"></div>
+  <div class="div-txt">Garvit's Tracker — Start Below</div>
+  <div class="div-line"></div>
+</div>
 
-      <div class="ring-wrap" aria-hidden="true">
+<!-- MAIN APP -->
+<main class="main">
+
+  <section class="card card-input">
+    <div class="card-hdr">
+      <div><div class="card-eye">Step 01 — Input</div><div class="card-ttl">Enter Your Data</div></div>
+      <div class="card-ico">📋</div>
+    </div>
+    <div class="field">
+      <label class="f-lbl" for="total">Total Classes <em>(all held so far)</em></label>
+      <div class="f-row"><input type="number" id="total" class="f-input" placeholder="e.g. 60" min="0"/><span class="f-suf">classes</span></div>
+    </div>
+    <div class="field">
+      <label class="f-lbl" for="attended">Classes Attended <em>(by you)</em></label>
+      <div class="f-row"><input type="number" id="attended" class="f-input" placeholder="e.g. 48" min="0"/><span class="f-suf">classes</span></div>
+    </div>
+    <div class="field">
+      <label class="f-lbl" for="required">Required % <em>(default 75)</em></label>
+      <div class="f-row"><input type="number" id="required" class="f-input" placeholder="75" min="0" max="100" value="75"/><span class="f-suf">%</span></div>
+    </div>
+    <div id="errBox" class="err-box" role="alert" aria-live="polite" hidden></div>
+  </section>
+
+  <section class="card card-status">
+    <div class="card-hdr">
+      <div><div class="card-eye">Step 02 — Results</div><div class="card-ttl">Your Standing</div></div>
+      <div class="card-ico">📊</div>
+    </div>
+    <div class="ring-outer">
+      <div class="ring-wrap">
         <svg class="ring-svg" viewBox="0 0 120 120">
-          <circle class="ring-bg" cx="60" cy="60" r="50"/>
-          <circle class="ring-fg" id="ringFg" cx="60" cy="60" r="50"
-            stroke-dasharray="314" stroke-dashoffset="314"/>
+          <circle class="ring-track" cx="60" cy="60" r="50"/>
+          <circle class="ring-fill" id="ringFill" cx="60" cy="60" r="50"/>
         </svg>
-        <div class="ring-label">
-          <span class="ring-pct" id="ringPct">–</span>
-          <span class="ring-sub">attendance</span>
+        <div class="ring-mid">
+          <span class="ring-pct" id="ringPct">—</span>
+          <span class="ring-lbl">attendance</span>
         </div>
       </div>
-
-      <div class="progress-section">
-        <div class="progress-meta">
-          <span>0%</span>
-          <span id="reqLabel">Required: 75%</span>
-          <span>100%</span>
-        </div>
-        <div class="progress-track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="progressTrack">
-          <div class="progress-fill" id="progressFill"></div>
-          <div class="progress-marker" id="progressMarker" style="left:75%"></div>
-        </div>
-      </div>
-
-      <div class="verdict" id="verdict">
-        <div class="verdict-placeholder"><span>↑ Enter your data above</span></div>
-      </div>
-
-      <div class="stats-row">
-        <div class="stat"><span class="stat-val" id="statPct">—</span><span class="stat-key">Current %</span></div>
-        <div class="stat"><span class="stat-val" id="statAttended">—</span><span class="stat-key">Attended</span></div>
-        <div class="stat"><span class="stat-val" id="statTotal">—</span><span class="stat-key">Total</span></div>
-        <div class="stat"><span class="stat-val" id="statGap">—</span><span class="stat-key">Gap</span></div>
-      </div>
-    </section>
-
-    <!-- SIMULATOR CARD -->
-    <section class="card simulator-card">
-      <div class="card-label">03 — SIMULATOR</div>
-      <h2 class="card-title">What-If Simulator</h2>
-      <p class="card-desc">See how future classes affect your attendance</p>
-      <div class="sim-fields">
-        <div class="sim-field">
-          <label for="simAttend" class="field-label">Classes you'll <em>attend</em></label>
-          <input type="number" id="simAttend" class="field-input sim-input" placeholder="0" min="0" />
-        </div>
-        <div class="sim-divider" aria-hidden="true">and / or</div>
-        <div class="sim-field">
-          <label for="simBunk" class="field-label">Classes you'll <em>bunk</em></label>
-          <input type="number" id="simBunk" class="field-input sim-input" placeholder="0" min="0" />
-        </div>
-      </div>
-      <div class="sim-result" id="simResult">
-        <div class="sim-placeholder">Enter base data + simulator values</div>
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="footer">
-    <span class="footer-hex" aria-hidden="true">⬡</span>
-    <div class="footer-text">
-      <span class="footer-name">Garvit Goyal</span>
-      <span class="footer-made">Made by Garvit</span>
     </div>
-  </footer>
+    <div class="prog-sec">
+      <div class="prog-meta"><span>0%</span><span id="reqLbl">Required: 75%</span><span>100%</span></div>
+      <div class="prog-track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="progTrack">
+        <div class="prog-fill" id="progFill"></div>
+        <div class="prog-marker" id="progMarker" style="left:75%"><div class="prog-marker-lbl" id="markerLbl">75%</div></div>
+      </div>
+    </div>
+    <div class="verdict" id="verdict"><div class="v-idle">↑ Enter your data to see results</div></div>
+    <div class="stats">
+      <div class="sbox"><span class="s-val" id="sPct">—</span><span class="s-key">Current %</span></div>
+      <div class="sbox"><span class="s-val" id="sGap">—</span><span class="s-key">Gap</span></div>
+      <div class="sbox"><span class="s-val" id="sAtt">—</span><span class="s-key">Attended</span></div>
+      <div class="sbox"><span class="s-val" id="sTot">—</span><span class="s-key">Total</span></div>
+    </div>
+  </section>
 
-  <script>
-    /* ═══════════════════════════════════════════
-       ATTENDANCE TRACKER — All JS inline
-    ═══════════════════════════════════════════ */
+  <section class="card card-sim">
+    <div class="card-hdr">
+      <div><div class="card-eye">Step 03 — Garvit's What-If Tool</div><div class="card-ttl">Future Class Simulator</div></div>
+      <div class="card-ico">🔮</div>
+    </div>
+    <div class="sim-grid">
+      <div class="field" style="margin-bottom:0">
+        <label class="f-lbl" for="simAtt">Classes I'll <span style="color:var(--green);font-weight:800">attend</span> <em>(future)</em></label>
+        <div class="f-row"><input type="number" id="simAtt" class="f-input" placeholder="0" min="0"/><span class="f-suf">classes</span></div>
+      </div>
+      <div class="field" style="margin-bottom:0">
+        <label class="f-lbl" for="simBnk">Classes I'll <span style="color:var(--red);font-weight:800">bunk</span> <em>(future)</em></label>
+        <div class="f-row"><input type="number" id="simBnk" class="f-input" placeholder="0" min="0"/><span class="f-suf">classes</span></div>
+      </div>
+    </div>
+    <div class="sim-result" id="simResult"><div class="sim-idle">Fill in your base data first, then simulate here</div></div>
+  </section>
 
-    // DOM refs
-    const elTotal      = document.getElementById('total');
-    const elAttended   = document.getElementById('attended');
-    const elRequired   = document.getElementById('required');
-    const elInputError = document.getElementById('inputError');
-    const elRingFg     = document.getElementById('ringFg');
-    const elRingPct    = document.getElementById('ringPct');
-    const elReqLabel   = document.getElementById('reqLabel');
-    const elProgFill   = document.getElementById('progressFill');
-    const elProgMark   = document.getElementById('progressMarker');
-    const elProgTrack  = document.getElementById('progressTrack');
-    const elVerdict    = document.getElementById('verdict');
-    const elStatPct    = document.getElementById('statPct');
-    const elStatAttended = document.getElementById('statAttended');
-    const elStatTotal  = document.getElementById('statTotal');
-    const elStatGap    = document.getElementById('statGap');
-    const elSimAttend  = document.getElementById('simAttend');
-    const elSimBunk    = document.getElementById('simBunk');
-    const elSimResult  = document.getElementById('simResult');
-    const elThemeToggle = document.getElementById('themeToggle');
-    const elToggleIcon  = document.getElementById('toggleIcon');
+</main>
 
-    const RING_CIRCUMF = 2 * Math.PI * 50; // ≈ 314.16
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="f-brand">
+      <div class="f-logo-ring">
+        <div class="f-logo-inner logo-container"></div>
+      </div>
+      <div>
+        <div class="f-name">Garvit Goyal</div>
+        <div class="f-role">Creator of <strong>Attendance Tracker</strong></div>
+      </div>
+    </div>
+    <div class="f-right">
+      <div class="f-copy">© 2025 <strong>Garvit Goyal</strong>. All rights reserved.</div>
+      <div class="f-tag">"Plan smart. Bunk smarter." — Garvit</div>
+    </div>
+  </div>
+</footer>
 
-    let currentState = { total: null, attended: null, required: 75, pct: null };
+<script>
+  /* ── Attendance Tracker by Garvit Goyal ── */
+  const $=id=>document.getElementById(id);
+  const elTot=$('total'),elAtt=$('attended'),elReq=$('required'),elErr=$('errBox');
+  const elRingFill=$('ringFill'),elRingPct=$('ringPct');
+  const elReqLbl=$('reqLbl'),elProgFill=$('progFill');
+  const elProgMark=$('progMarker'),elMarkerLbl=$('markerLbl');
+  const elProgTrack=$('progTrack'),elVerdict=$('verdict');
+  const elSPct=$('sPct'),elSGap=$('sGap'),elSAtt=$('sAtt'),elSTot=$('sTot');
+  const elSimAtt=$('simAtt'),elSimBnk=$('simBnk'),elSimResult=$('simResult');
+  const elThemeBtn=$('themeBtn'),elThemeIcon=$('themeIcon');
+  const CIRCUMF=2*Math.PI*50;
+  let state={total:null,attended:null,required:75,pct:null};
 
-    // ── Calculation helpers ──────────────────────
-    function calcPct(attended, total) {
-      if (total === 0) return 0;
-      return Math.min(100, Math.round((attended / total) * 10000) / 100);
-    }
-
-    function calcCanBunk(attended, total, req) {
-      if (req === 0) return Infinity;
-      return Math.floor((attended - (req / 100) * total) / (req / 100));
-    }
-
-    function calcNeedToAttend(attended, total, req) {
-      if (req >= 100) return Infinity;
-      return Math.ceil(((req / 100) * total - attended) / (1 - req / 100));
-    }
-
-    // ── Validation ───────────────────────────────
-    function validateInputs() {
-      const tRaw = elTotal.value.trim();
-      const aRaw = elAttended.value.trim();
-      const rRaw = elRequired.value.trim();
-
-      [elTotal, elAttended, elRequired].forEach(el => el.classList.remove('error'));
-      hideError();
-
-      if (!tRaw && !aRaw) return null;
-
-      const total    = Number(tRaw);
-      const attended = Number(aRaw);
-      const required = rRaw === '' ? 75 : Number(rRaw);
-
-      if (total < 0 || attended < 0) {
-        showError('Values cannot be negative.');
-        if (total < 0)    elTotal.classList.add('error');
-        if (attended < 0) elAttended.classList.add('error');
-        return null;
-      }
-      if (!Number.isInteger(total) || !Number.isInteger(attended)) {
-        showError('Classes must be whole numbers (no decimals).');
-        return null;
-      }
-      if (attended > total) {
-        showError('Classes attended cannot exceed total classes conducted.');
-        elAttended.classList.add('error');
-        return null;
-      }
-      if (required < 0 || required > 100) {
-        showError('Required percentage must be between 0 and 100.');
-        elRequired.classList.add('error');
-        return null;
-      }
-      return { total, attended, required };
-    }
-
-    function showError(msg) { elInputError.textContent = msg; elInputError.removeAttribute('hidden'); }
-    function hideError()    { elInputError.setAttribute('hidden', ''); }
-
-    // ── UI updaters ──────────────────────────────
-    function updateRing(pct, required) {
-      elRingFg.style.strokeDashoffset = RING_CIRCUMF * (1 - pct / 100);
-      if (pct >= required) {
-        elRingFg.style.stroke = 'var(--safe)';
-        elRingFg.style.filter = 'drop-shadow(0 0 6px var(--safe))';
-      } else if (pct >= required * 0.85) {
-        elRingFg.style.stroke = 'var(--gold)';
-        elRingFg.style.filter = 'drop-shadow(0 0 6px rgba(245,200,66,0.4))';
-      } else {
-        elRingFg.style.stroke = 'var(--warn)';
-        elRingFg.style.filter = 'drop-shadow(0 0 6px var(--warn))';
-      }
-      elRingPct.textContent = pct.toFixed(1) + '%';
-    }
-
-    function resetRing() {
-      elRingFg.style.strokeDashoffset = RING_CIRCUMF;
-      elRingFg.style.stroke = 'var(--accent)';
-      elRingFg.style.filter = 'drop-shadow(0 0 6px var(--accent))';
-      elRingPct.textContent = '–';
-    }
-
-    function updateProgressBar(pct, required) {
-      elProgFill.style.width = pct + '%';
-      elProgMark.style.left  = required + '%';
-      elReqLabel.textContent = 'Required: ' + required + '%';
-      elProgTrack.setAttribute('aria-valuenow', pct);
-      if (pct >= required)
-        elProgFill.style.background = 'linear-gradient(90deg, var(--safe) 0%, #80ffbe 100%)';
-      else if (pct >= required * 0.85)
-        elProgFill.style.background = 'linear-gradient(90deg, var(--gold) 0%, #ffe080 100%)';
-      else
-        elProgFill.style.background = 'linear-gradient(90deg, var(--warn) 0%, #ff9898 100%)';
-    }
-
-    function resetProgressBar() { elProgFill.style.width = '0%'; }
-
-    function updateVerdict(pct, total, attended, required) {
-      if (pct >= required) {
-        const canBunk = calcCanBunk(attended, total, required);
-        elVerdict.className = 'verdict safe';
-        elVerdict.innerHTML = `
-          <span class="verdict-emoji">🎉</span>
-          <div class="verdict-msg">You can safely bunk ${canBunk} class${canBunk !== 1 ? 'es' : ''}!</div>
-          <div class="verdict-detail">Bunking ${canBunk + 1} or more will drop you below ${required}%</div>`;
-      } else {
-        const need = calcNeedToAttend(attended, total, required);
-        const isInf = need === Infinity || need > 9999;
-        elVerdict.className = 'verdict warn';
-        elVerdict.innerHTML = `
-          <span class="verdict-emoji">⚠️</span>
-          <div class="verdict-msg">${isInf ? 'Cannot reach required %' : `Attend ${need} more class${need !== 1 ? 'es' : ''} in a row`}</div>
-          <div class="verdict-detail">${isInf ? 'Required % is 100 — attend all remaining classes' : `You need ${need} consecutive class${need !== 1 ? 'es' : ''} to hit ${required}%`}</div>`;
-      }
-    }
-
-    function updateStats(pct, attended, total, required) {
-      const gap = (pct - required).toFixed(1);
-      elStatPct.textContent      = pct.toFixed(2) + '%';
-      elStatAttended.textContent = attended;
-      elStatTotal.textContent    = total;
-      elStatGap.textContent      = (gap > 0 ? '+' : '') + gap + '%';
-      elStatGap.style.color      = gap >= 0 ? 'var(--safe)' : 'var(--warn)';
-    }
-
-    function resetStats() {
-      [elStatPct, elStatAttended, elStatTotal, elStatGap].forEach(el => { el.textContent = '—'; el.style.color = ''; });
-    }
-
-    function resetStatusCard() {
-      resetRing(); resetProgressBar(); resetStats();
-      elVerdict.className = 'verdict';
-      elVerdict.innerHTML = `<div class="verdict-placeholder"><span>↑ Enter your data above</span></div>`;
-    }
-
-    // ── Simulator ────────────────────────────────
-    function updateSimulator() {
-      const s = currentState;
-      if (s.total === null || s.attended === null) {
-        elSimResult.innerHTML = '<div class="sim-placeholder">Enter base data + simulator values</div>';
-        return;
-      }
-      const extraAttend = Math.max(0, parseInt(elSimAttend.value) || 0);
-      const extraBunk   = Math.max(0, parseInt(elSimBunk.value)   || 0);
-      const newTotal    = s.total    + extraAttend + extraBunk;
-      const newAttended = s.attended + extraAttend;
-      const newPct = calcPct(newAttended, newTotal);
-      const diff   = parseFloat((newPct - s.pct).toFixed(2));
-      const arrow  = diff > 0 ? '▲' : diff < 0 ? '▼' : '●';
-      const dir    = diff > 0 ? 'up' : diff < 0 ? 'down' : 'same';
-      const diffLabel = diff === 0 ? 'No change' : (diff > 0 ? '+' : '') + diff.toFixed(2) + '%';
-      const status = newPct >= s.required ? '✅ Safe' : '❌ Low';
-
-      elSimResult.innerHTML = `
-        <div class="sim-outcome">
-          <div class="sim-col">
-            <span class="sim-val ${dir}">${newPct.toFixed(2)}%</span>
-            <span class="sim-key">Predicted %</span>
-            <span class="sim-arrow ${dir}">${arrow} ${diffLabel}</span>
-          </div>
-          <div class="sim-col">
-            <span class="sim-val">${newAttended} / ${newTotal}</span>
-            <span class="sim-key">New Ratio</span>
-            <span class="sim-arrow same">after simulation</span>
-          </div>
-          <div class="sim-col">
-            <span class="sim-val">${status}</span>
-            <span class="sim-key">vs ${s.required}% req</span>
-            <span class="sim-arrow same">&nbsp;</span>
-          </div>
-        </div>`;
-    }
-
-    // ── Main compute ─────────────────────────────
-    function compute() {
-      const vals = validateInputs();
-      if (!vals) {
-        if (!elTotal.value && !elAttended.value) resetStatusCard();
-        return;
-      }
-      const { total, attended, required } = vals;
-      if (total === 0) {
-        resetStatusCard();
-        elReqLabel.textContent = 'Required: ' + required + '%';
-        elVerdict.className = 'verdict';
-        elVerdict.innerHTML = `<div class="verdict-placeholder"><span>Total classes must be &gt; 0</span></div>`;
-        return;
-      }
-      const pct = calcPct(attended, total);
-      currentState = { total, attended, required, pct };
-      updateRing(pct, required);
-      updateProgressBar(pct, required);
-      updateVerdict(pct, total, attended, required);
-      updateStats(pct, attended, total, required);
-      updateSimulator();
-    }
-
-    // ── LocalStorage ─────────────────────────────
-    const LS_KEY = 'attendanceTracker_v1';
-
-    function saveToStorage() {
-      try { localStorage.setItem(LS_KEY, JSON.stringify({ total: elTotal.value, attended: elAttended.value, required: elRequired.value })); } catch(_) {}
-    }
-    function loadFromStorage() {
-      try {
-        const raw = localStorage.getItem(LS_KEY);
-        if (!raw) return;
-        const d = JSON.parse(raw);
-        if (d.total    !== undefined) elTotal.value    = d.total;
-        if (d.attended !== undefined) elAttended.value = d.attended;
-        if (d.required !== undefined) elRequired.value = d.required;
-      } catch(_) {}
-    }
-
-    // ── Theme ────────────────────────────────────
-    const THEME_KEY = 'attendanceTracker_theme';
-
-    function applyTheme(theme) {
-      document.documentElement.setAttribute('data-theme', theme);
-      elToggleIcon.textContent = theme === 'dark' ? '☀' : '☽';
-      try { localStorage.setItem(THEME_KEY, theme); } catch(_) {}
-    }
-    function initTheme() {
-      let saved; try { saved = localStorage.getItem(THEME_KEY); } catch(_) {}
-      const preferred = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-      applyTheme(preferred);
-    }
-    elThemeToggle.addEventListener('click', () => {
-      applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  /* ── Inject SVG logo into all .logo-container elements ── */
+  function injectLogos(){
+    const tpl = $('logoTpl');
+    document.querySelectorAll('.logo-container').forEach(container=>{
+      const clone = tpl.cloneNode(true);
+      clone.removeAttribute('id');
+      clone.style.display='block';
+      clone.style.width='100%';
+      clone.style.height='100%';
+      clone.classList.add('logo-svg');
+      container.innerHTML='';
+      container.appendChild(clone);
     });
+  }
 
-    // ── Event listeners ──────────────────────────
-    [elTotal, elAttended, elRequired].forEach(el => {
-      el.addEventListener('input', () => { compute(); saveToStorage(); });
+  /* ── Update logo color for current theme ── */
+  function updateLogoColor(theme){
+    document.querySelectorAll('.logo-svg').forEach(svg=>{
+      svg.style.color = theme==='dark' ? '#ffffff' : '#0a0f17';
     });
-    [elSimAttend, elSimBunk].forEach(el => el.addEventListener('input', updateSimulator));
+  }
 
-    // ── Init ─────────────────────────────────────
-    initTheme();
-    loadFromStorage();
-    compute();
-  </script>
+  /* Maths */
+  const calcPct=(a,t)=>t===0?0:Math.min(100,Math.round(a/t*10000)/100);
+  const calcBunk=(a,t,r)=>r===0?Infinity:Math.floor((a-(r/100)*t)/(r/100));
+  const calcNeed=(a,t,r)=>r>=100?Infinity:Math.ceil(((r/100)*t-a)/(1-r/100));
+
+  /* Validation */
+  function validate(){
+    const t=elTot.value.trim(),a=elAtt.value.trim(),r=elReq.value.trim();
+    [elTot,elAtt,elReq].forEach(e=>e.classList.remove('err'));
+    elErr.setAttribute('hidden','');
+    if(!t&&!a)return null;
+    const total=Number(t),attended=Number(a),required=r===''?75:Number(r);
+    if(total<0||attended<0){if(total<0)elTot.classList.add('err');if(attended<0)elAtt.classList.add('err');return showErr('Values cannot be negative.'),null}
+    if(!Number.isInteger(total)||!Number.isInteger(attended))return showErr('Enter whole numbers — no decimals.'),null;
+    if(attended>total){elAtt.classList.add('err');return showErr('Attended cannot exceed total.'),null}
+    if(required<0||required>100){elReq.classList.add('err');return showErr('Required % must be 0–100.'),null}
+    return{total,attended,required};
+  }
+  function showErr(m){elErr.textContent=m;elErr.removeAttribute('hidden')}
+
+  /* Ring */
+  function setRing(pct,req){
+    elRingFill.style.strokeDashoffset=CIRCUMF*(1-pct/100);
+    const c=pct>=req?'var(--green)':pct>=req*.85?'var(--gold)':'var(--red)';
+    const g=pct>=req?'var(--green)':pct>=req*.85?'rgba(255,192,64,.5)':'var(--red)';
+    elRingFill.style.stroke=c;elRingFill.style.filter=`drop-shadow(0 0 8px ${g})`;
+    elRingPct.textContent=pct.toFixed(1)+'%';
+  }
+  function resetRing(){elRingFill.style.strokeDashoffset=CIRCUMF;elRingFill.style.stroke='var(--blue)';elRingFill.style.filter='drop-shadow(0 0 8px var(--blue-glow))';elRingPct.textContent='—'}
+
+  /* Bar */
+  function setBar(pct,req){
+    elProgFill.style.width=pct+'%';elProgMark.style.left=req+'%';elMarkerLbl.textContent=req+'%';
+    elReqLbl.textContent='Required: '+req+'%';elProgTrack.setAttribute('aria-valuenow',pct);
+    elProgFill.style.background=pct>=req?'linear-gradient(90deg,var(--green),#80ffc0)':pct>=req*.85?'linear-gradient(90deg,var(--gold),#ffe080)':'linear-gradient(90deg,var(--red),#ff9090)';
+  }
+  function resetBar(){elProgFill.style.width='0%'}
+
+  /* Verdict */
+  function setVerdict(pct,total,attended,req){
+    if(pct>=req){
+      const n=calcBunk(attended,total,req);
+      elVerdict.className='verdict safe';
+      elVerdict.innerHTML=`<span class="v-ico">🎉</span><div class="v-msg">You can bunk ${n} class${n!==1?'es':''}!</div><div class="v-sub">Bunking ${n+1}+ drops you below ${req}% — stay smart like Garvit!</div>`;
+    }else{
+      const n=calcNeed(attended,total,req);const inf=n===Infinity||n>9999;
+      elVerdict.className='verdict warn';
+      elVerdict.innerHTML=`<span class="v-ico">⚠️</span><div class="v-msg">${inf?'Cannot reach required %':`Attend ${n} more class${n!==1?'es':''} in a row`}</div><div class="v-sub">${inf?'Required is 100% — zero absences allowed.':`${n} consecutive class${n!==1?'es':''} needed to hit ${req}%`}</div>`;
+    }
+  }
+  function resetVerdict(){elVerdict.className='verdict';elVerdict.innerHTML='<div class="v-idle">↑ Enter your data to see results</div>'}
+
+  /* Stats */
+  function setStats(pct,att,tot,req){
+    const gap=(pct-req).toFixed(1);
+    elSPct.textContent=pct.toFixed(2)+'%';
+    elSGap.textContent=(gap>0?'+':'')+gap+'%';elSGap.style.color=gap>=0?'var(--green)':'var(--red)';
+    elSAtt.textContent=att;elSTot.textContent=tot;
+  }
+  function resetStats(){[elSPct,elSGap,elSAtt,elSTot].forEach(e=>{e.textContent='—';e.style.color=''})}
+
+  /* Simulator */
+  function runSim(){
+    const s=state;
+    if(s.total===null){elSimResult.innerHTML='<div class="sim-idle">Fill in your base data first, then simulate here</div>';return}
+    const ea=Math.max(0,parseInt(elSimAtt.value)||0),eb=Math.max(0,parseInt(elSimBnk.value)||0);
+    const nt=s.total+ea+eb,na=s.attended+ea,np=calcPct(na,nt);
+    const diff=parseFloat((np-s.pct).toFixed(2));
+    const dir=diff>0?'up':diff<0?'down':'same';
+    const arrow=diff>0?'▲':diff<0?'▼':'●';
+    const ds=diff===0?'No change':(diff>0?'+':'')+diff.toFixed(2)+'%';
+    const ok=np>=s.required;
+    elSimResult.innerHTML=`<div class="sim-out"><div class="sim-col"><span class="sim-val ${dir}">${np.toFixed(2)}%</span><span class="sim-key">Predicted %</span><span class="sim-chg ${dir}">${arrow} ${ds}</span></div><div class="sim-col"><span class="sim-val">${na}/${nt}</span><span class="sim-key">New Ratio</span><span class="sim-chg same">after simulation</span></div><div class="sim-col"><span class="sim-val" style="color:${ok?'var(--green)':'var(--red)'}">${ok?'✅ Safe':'❌ Low'}</span><span class="sim-key">vs ${s.required}% req</span><span class="sim-chg same">Garvit's verdict</span></div></div>`;
+  }
+
+  function resetAll(){resetRing();resetBar();resetVerdict();resetStats()}
+
+  /* Compute */
+  function compute(){
+    const v=validate();
+    if(!v){if(!elTot.value&&!elAtt.value)resetAll();return}
+    const{total,attended,required}=v;
+    if(total===0){resetAll();elReqLbl.textContent='Required: '+required+'%';elVerdict.className='verdict';elVerdict.innerHTML='<div class="v-idle">Total must be greater than 0</div>';return}
+    const pct=calcPct(attended,total);state={total,attended,required,pct};
+    setRing(pct,required);setBar(pct,required);setVerdict(pct,total,attended,required);setStats(pct,attended,total,required);runSim();
+  }
+
+  /* Storage */
+  const LS='garvit_att_v3';
+  function save(){try{localStorage.setItem(LS,JSON.stringify({total:elTot.value,attended:elAtt.value,required:elReq.value}))}catch(_){}}
+  function load(){try{const d=JSON.parse(localStorage.getItem(LS));if(!d)return;if(d.total!==undefined)elTot.value=d.total;if(d.attended!==undefined)elAtt.value=d.attended;if(d.required!==undefined)elReq.value=d.required}catch(_){}}
+
+  /* Theme */
+  const TK='garvit_theme';
+  function applyTheme(t){
+    document.documentElement.setAttribute('data-theme',t);
+    elThemeIcon.textContent=t==='dark'?'☀':'☽';
+    try{localStorage.setItem(TK,t)}catch(_){}
+    updateLogoColor(t);
+  }
+  function initTheme(){let s;try{s=localStorage.getItem(TK)}catch(_){}applyTheme(s||(window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'))}
+  elThemeBtn.addEventListener('click',()=>applyTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark'));
+
+  [elTot,elAtt,elReq].forEach(el=>el.addEventListener('input',()=>{compute();save()}));
+  [elSimAtt,elSimBnk].forEach(el=>el.addEventListener('input',runSim));
+
+  /* Boot */
+  injectLogos();
+  initTheme();
+  load();
+  compute();
+</script>
 </body>
 </html>
