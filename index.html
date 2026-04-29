@@ -4,7 +4,20 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Attendance Tracker — by Garvit Goyal</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+
+  <!-- PWA Meta Tags -->
+  <meta name="application-name" content="Attendance Tracker"/>
+  <meta name="description" content="Track your attendance, know how many classes you can bunk, by Garvit Goyal."/>
+  <meta name="theme-color" content="#04060a" id="themeColorMeta"/>
+  <meta name="mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+  <meta name="apple-mobile-web-app-title" content="AttTracker"/>
+  <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAIAAADdvvtQAAAFU0lEQVR4nO2cy41lRRQE04W3YzkWYAMOsMQffMExPIHFoAGG5nXde6tOVp4KKXYzUueJCqnn+/T64QvAbWRfANHIvgCikX0BRCP7AohG9gUQjewLIBrZF0A0si+AaGRfANHIvmApP//2xw7YPaxD9gVLsadDQNnY0yGgbOzpEFA29nQICOAdsi+AaGRfANHIvgCikX0BRCP7AohG9gWf0v63x9F/BCD7gid+7dtWH7j/jbIveOg3wnLj02RfcILlxqfJvuAEy41Pk33BCZYbnyb7ghMsNz5N9gVT1Nv3HHuF7AuOVd/jCtkXHKu+xxWyLzhWfY8rZF8A0ci+AKKRfQFEI/sCiEb2BRCN7AsgGtkXQDSyL4BoZF+wlJG/rSzA7mEdsi9Yij0dAlr1ijXn2dOxH7v6i6rrYW++NAFNRF0Pe/OlCWgi6nrYgRAQ5HlW18Oi+fL7r5+yiWcV6CCgcUbSISAC+pjxegiIgL7nUj0ERED/4mo9BERAf3OjHgIioL+4Vw8BEdD9dAiIgJ7WQ0BHB/S8HgI6N6Ap9RDQoQEtSsfoWQXWCOgrS+txeVaBOAJa923L7lkF+g4PqKYel2cVGDw5oLJ6XJ5VIPHYgMrSMXpWgcczAyqux+VZBSoPDKi+HpdnFdg8KqDKX/Ts4FkFTs8JyFiPy7MKtB4SkLcel2cVmD0hIG86Rs8qkNs+oB3qcXlWgd/BwwoUr2CTesY9z0UFimcFtFtD9l/03PM8FxWInhjQPg3tVs+457mowPXcgHZoaMN6xj3PRQW6pwfkbWjDdC55nosKjK8IyNXQtvWMe56LCqQvCqi4oT2/bd3wPBcVqF8XUFlD+9cz7nkuKrC/NKCChiLqGfc8F63+AuOH7fk2KfWMe56L9jlswxdKSeeS57lon8N2e6qsesY9z0VbHbbJg01Jp7ieS54not0Osz9baD1XPc9CGx5mfLzcem54noL2PMzyhNH13PP8HG17WPFDRqfzxPNDtPNhZS/aoJ4nnp+gzQ9b/a5T0tmhnoeeb6P9D1v3up3qee75Hoo4bMUbN6tniucbKOWwuS/dr55Znq+ioMNmPXa/dOZ6voSyDnv+6l3rmet5HMUdNuu7T7N6pnseRImHUU+N5xEUehj11Hj+FOUeRj01nt+j6MNIp8bzG5R+GPXUeP4/1OAw6qnx/CHqcRj11Hj+L2pz2OH1lHn+DnU67OR6Kj3/EzU77Mx06j1/Q/0OO7Oees9fUcvDDqzH4vnVNaBXzsdVpXtW18NeaR+6GOpZXQ/7yjn1uDyr62EHQkCQ51ldDzsQAoI8z+p62IEQEOR5VtfDDoSAIM+zuh52IAQEeZ7V9bADISDI86zdDvvxp1/gPQREQAREQAREQKEQEAEREAEREAGFQkD8OVAfz+p62IEQEOR5VtfDDoSAIM+zuh52IAQEeZ7V9bADIaBDmfVf9AnoIFZ83gMBHcG6D50hoP4s/dgrAmrO6g/eI6DO3KjnakME1Jbb9VxqqG1AUBOQBdkXtOdhPZs3JPuC9hAQPIKA4BEEBPeZUs/ODcm+oD2N63kRUAEEBI8gIHgEAcFTutbzIqAaCAie0rKeFwFV0q+eV0RAH/4rhVAu1RPx714IaNOGvv18u38C2pGRdAiIgEZjevOjdv8ElI3dPwFlY/dPQNnY/ccHBDsj+wKIRvYFEI3sCyAa2RdANLIvgGhkXwDRyL4AopF9AUQj+wKIRvYFEI3sCyAa2RdANLIvgGhkXwDRyL4AopF9AUQj+wKIRvYFEI3sCyAa2RdANLIvgGhkXwDRyL4AopF9AUQj+wKI5k9KdMuXjxGs0QAAAABJRU5ErkJggg=="/>
+  <link rel="manifest" id="pwaManifest"/>
+
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{
@@ -14,24 +27,46 @@
       --blue:#4da3ff;--blue2:#1a65d4;--blue-glow:rgba(77,163,255,0.2);
       --green:#20e080;--red:#ff4f4f;--red-glow:rgba(255,79,79,0.15);
       --gold:#ffc040;--purple:#b48eff;
-      --logo-color:#ffffff;
       --r:14px;--r2:9px;
-      --sans:'Space Grotesk',sans-serif;--body:'Inter',sans-serif;
+      --sans:'Syne',sans-serif;--body:'DM Sans',sans-serif;
       --ease:0.28s cubic-bezier(0.4,0,0.2,1)
     }
     [data-theme="light"]{
-      --bg:#ecf1f8;--surface:#ffffff;--surface2:#f2f6fb;--surface3:#e8eef6;
-      --border:rgba(0,0,0,0.07);--border2:rgba(0,0,0,0.13);
-      --text:#0a0f17;--text2:#4d6070;--text3:#b8cad8;
+      --bg:#f0f4fa;--surface:#ffffff;--surface2:#e8eef7;--surface3:#dde5f0;
+      --border:rgba(0,0,0,0.08);--border2:rgba(0,0,0,0.15);
+      --text:#0a0f17;--text2:#4d6070;--text3:#a0b4c8;
       --blue:#1760c8;--blue2:#1050aa;--blue-glow:rgba(23,96,200,0.12);
       --green:#10a858;--red:#cc2c2c;--red-glow:rgba(204,44,44,0.1);
-      --logo-color:#0a0f17;
     }
     html{scroll-behavior:smooth}
     body{font-family:var(--body);background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;transition:background var(--ease),color var(--ease)}
 
-    /* SVG logo color adapts via CSS */
-    .logo-svg{color:var(--logo-color);transition:color var(--ease)}
+    /* PWA INSTALL BANNER */
+    #installBanner{
+      position:fixed;bottom:1.2rem;left:50%;transform:translateX(-50%) translateY(140px);
+      z-index:9999;background:var(--surface);
+      border:1.5px solid var(--blue);border-radius:18px;
+      padding:1.1rem 1.3rem 1.1rem 1.1rem;
+      display:flex;align-items:flex-start;gap:.9rem;
+      box-shadow:0 8px 40px rgba(0,0,0,0.5),0 0 30px var(--blue-glow);
+      max-width:360px;width:calc(100vw - 2rem);
+      opacity:0;transition:transform 0.55s cubic-bezier(.34,1.4,.64,1),opacity 0.4s ease;
+      pointer-events:none;
+    }
+    #installBanner.show{transform:translateX(-50%) translateY(0);opacity:1;pointer-events:all}
+    .install-icon{width:52px;height:52px;flex-shrink:0;border-radius:13px;background:linear-gradient(135deg,var(--blue2),var(--purple));display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px var(--blue-glow)}
+    .install-icon svg{width:30px;height:30px}
+    .install-text{flex:1;min-width:0}
+    .install-title{font-family:var(--sans);font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:3px;line-height:1.2}
+    .install-sub{font-size:.7rem;color:var(--text2);line-height:1.45}
+    .install-actions{display:flex;gap:.5rem;margin-top:.7rem;flex-wrap:wrap}
+    .install-btn{padding:.4rem 1rem;border-radius:8px;font-family:var(--sans);font-size:.73rem;font-weight:700;cursor:pointer;border:none;transition:all var(--ease);letter-spacing:.01em}
+    .install-btn.primary{background:var(--blue);color:#fff;box-shadow:0 2px 10px var(--blue-glow)}
+    .install-btn.primary:hover{background:var(--blue2);transform:scale(1.04)}
+    .install-btn.ghost{background:var(--surface2);color:var(--text2);border:1px solid var(--border2)}
+    .install-btn.ghost:hover{border-color:var(--blue);color:var(--text)}
+    .install-close{position:absolute;top:.55rem;right:.6rem;width:22px;height:22px;border-radius:50%;background:var(--surface2);border:1px solid var(--border2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.6rem;color:var(--text2);transition:all var(--ease);font-weight:700}
+    .install-close:hover{border-color:var(--red);color:var(--red);background:rgba(255,79,79,.08)}
 
     /* BG */
     .bg-wrap{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
@@ -39,7 +74,7 @@
     .orb1{width:560px;height:560px;background:#4da3ff;top:-120px;right:-120px}
     .orb2{width:380px;height:380px;background:#b48eff;bottom:60px;left:-100px;animation-delay:-5s}
     .orb3{width:280px;height:280px;background:#20e080;bottom:-60px;right:180px;animation-delay:-10s}
-    [data-theme="light"] .orb{opacity:.05}
+    [data-theme="light"] .orb{opacity:.04}
     @keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(28px,48px) scale(1.1)}}
 
     /* RIBBON */
@@ -49,31 +84,17 @@
     .ribbon-item{font-size:.7rem;font-weight:700;letter-spacing:.08em;color:#fff;padding:0 1.8rem;white-space:nowrap}
 
     /* HEADER */
-    .header{position:sticky;top:0;z-index:100;backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);background:rgba(4,6,10,.82);border-bottom:1px solid var(--border2)}
-    [data-theme="light"] .header{background:rgba(236,241,248,.9)}
+    .header{position:sticky;top:0;z-index:100;backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);background:rgba(4,6,10,.85);border-bottom:1px solid var(--border2)}
+    [data-theme="light"] .header{background:rgba(240,244,250,.92)}
     .header-inner{max-width:960px;margin:0 auto;padding:.85rem 1.75rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
-
     .brand{display:flex;align-items:center;gap:.9rem}
-
-    /* Logo box in header */
-    .hdr-logo{
-      width:46px;height:46px;flex-shrink:0;
-      border-radius:10px;
-      border:1.5px solid var(--border2);
-      background:var(--surface2);
-      display:flex;align-items:center;justify-content:center;
-      padding:5px;
-      box-shadow:0 0 16px var(--blue-glow);
-      overflow:hidden;
-    }
+    .hdr-logo{width:46px;height:46px;flex-shrink:0;border-radius:10px;border:1.5px solid var(--border2);background:var(--surface2);display:flex;align-items:center;justify-content:center;padding:6px;box-shadow:0 0 16px var(--blue-glow);overflow:hidden}
     .hdr-logo svg{width:100%;height:100%}
-
     .brand-text{display:flex;flex-direction:column;gap:1px}
     .brand-name{font-family:var(--sans);font-size:1.05rem;font-weight:700;color:var(--text);letter-spacing:-.02em;line-height:1}
     .brand-sub{font-size:.62rem;font-weight:600;color:var(--blue);letter-spacing:.03em}
     .brand-by{font-size:.62rem;font-weight:500;color:var(--text2)}
     .brand-by strong{color:var(--purple)}
-
     .hdr-right{display:flex;align-items:center;gap:.65rem}
     .badge{display:flex;align-items:center;gap:.45rem;background:var(--surface2);border:1px solid var(--border2);border-radius:99px;padding:.3rem .85rem;font-size:.7rem;font-weight:600;color:var(--text2);white-space:nowrap}
     .badge .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 7px var(--green);animation:blink 2s ease infinite}
@@ -85,27 +106,10 @@
 
     /* HERO */
     .hero{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:2.8rem 1.75rem 1.8rem;text-align:center}
-
-    /* Big hero logo */
-    .hero-logo-ring{
-      width:120px;height:120px;
-      margin:0 auto 1.3rem;
-      border-radius:50%;
-      background:linear-gradient(135deg,var(--blue),var(--purple));
-      display:flex;align-items:center;justify-content:center;
-      padding:3px;
-      box-shadow:0 0 40px var(--blue-glow),0 8px 32px rgba(0,0,0,.3);
-      animation:heroPop .65s cubic-bezier(.34,1.56,.64,1) both;
-    }
+    .hero-logo-ring{width:120px;height:120px;margin:0 auto 1.3rem;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--purple));display:flex;align-items:center;justify-content:center;padding:3px;box-shadow:0 0 40px var(--blue-glow),0 8px 32px rgba(0,0,0,.3);animation:heroPop .65s cubic-bezier(.34,1.56,.64,1) both}
     @keyframes heroPop{from{transform:scale(.5);opacity:0}to{transform:scale(1);opacity:1}}
-    .hero-logo-inner{
-      width:100%;height:100%;border-radius:50%;
-      background:var(--surface);
-      display:flex;align-items:center;justify-content:center;
-      padding:12px;
-    }
+    .hero-logo-inner{width:100%;height:100%;border-radius:50%;background:var(--surface);display:flex;align-items:center;justify-content:center;padding:14px}
     .hero-logo-inner svg{width:100%;height:100%}
-
     .hero-pill{display:inline-flex;align-items:center;gap:.4rem;background:var(--surface2);border:1px solid var(--border2);border-radius:99px;padding:.28rem .9rem;font-size:.67rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--blue);margin-bottom:1rem}
     .hero-h1{font-family:var(--sans);font-size:clamp(2rem,5.5vw,3.2rem);font-weight:800;letter-spacing:-.03em;line-height:1.1;color:var(--text);margin-bottom:.85rem}
     .grad{background:linear-gradient(135deg,var(--blue) 0%,var(--purple) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
@@ -214,12 +218,8 @@
     .footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:2.2rem 1.75rem}
     .footer-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.25rem}
     .f-brand{display:flex;align-items:center;gap:.85rem}
-    .f-logo-ring{
-      width:46px;height:46px;border-radius:50%;flex-shrink:0;
-      background:linear-gradient(135deg,var(--blue2),var(--purple));
-      padding:2px;box-shadow:0 0 14px var(--blue-glow);
-    }
-    .f-logo-inner{width:100%;height:100%;border-radius:50%;background:var(--surface);display:flex;align-items:center;justify-content:center;padding:5px}
+    .f-logo-ring{width:46px;height:46px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--blue2),var(--purple));padding:2px;box-shadow:0 0 14px var(--blue-glow)}
+    .f-logo-inner{width:100%;height:100%;border-radius:50%;background:var(--surface);display:flex;align-items:center;justify-content:center;padding:6px}
     .f-logo-inner svg{width:100%;height:100%}
     .f-name{font-family:var(--sans);font-size:.93rem;font-weight:700;color:var(--text)}
     .f-role{font-size:.64rem;color:var(--text2);margin-top:2px}
@@ -228,37 +228,37 @@
     .f-copy{font-size:.67rem;color:var(--text3)}.f-copy strong{color:var(--blue)}
     .f-tag{font-size:.65rem;color:var(--text3);margin-top:3px;font-style:italic}
     @media(max-width:580px){.footer-inner{flex-direction:column;align-items:flex-start}.f-right{text-align:left}.footer{padding:2rem 1rem}}
-
     [hidden]{display:none!important}
   </style>
 </head>
 <body>
 
+<!-- PWA INSTALL BANNER -->
+<div id="installBanner" role="dialog" aria-label="Install Attendance Tracker app">
+  <button class="install-close" id="installDismiss" aria-label="Close">✕</button>
+  <div class="install-icon">
+    <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="10" y="8" width="40" height="46" rx="7" fill="none" stroke="white" stroke-width="2.5"/>
+      <rect x="20" y="4" width="20" height="10" rx="4" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="2"/>
+      <path d="M18 28 L26 36 L42 20" stroke="#20e080" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="18" y1="42" x2="42" y2="42" stroke="rgba(255,255,255,0.4)" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="40" cy="50" r="5" fill="#20e080" opacity=".9"/>
+    </svg>
+  </div>
+  <div class="install-text">
+    <div class="install-title">Install Attendance Tracker</div>
+    <div class="install-sub">Add to Home Screen — quick access &amp; works offline!</div>
+    <div class="install-actions">
+      <button class="install-btn primary" id="installAccept">📲 Install App</button>
+      <button class="install-btn ghost" id="installLater">Later</button>
+    </div>
+  </div>
+</div>
+
 <div class="bg-wrap" aria-hidden="true">
   <div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div>
 </div>
 
-<!-- Inline SVG logo template (hidden, cloned by JS) -->
-<svg id="logoTpl" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" fill="none" style="display:none">
-  <!-- Outer decorative circle -->
-  <circle cx="97" cy="103" r="86" stroke="currentColor" stroke-width="2.2" fill="none" opacity="0.4"/>
-  <!-- Large G letterform -->
-  <path d="M 168,58 A 76,76 0 1,0 168,148 L 168,108 L 126,108 L 126,124 L 151,124 L 151,148 A 76,76 0 1,1 151,58 Z"
-        stroke="currentColor" stroke-width="6.5" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
-  <!-- G crossbar -->
-  <line x1="126" y1="108" x2="170" y2="108" stroke="currentColor" stroke-width="6.5" stroke-linecap="round"/>
-  <!-- Person head -->
-  <circle cx="97" cy="70" r="15" fill="currentColor" opacity="0.88"/>
-  <!-- Person shoulders/body -->
-  <path d="M 58,143 Q 58,107 97,105 Q 136,107 136,143 Z" fill="currentColor" opacity="0.88"/>
-  <!-- Divider line -->
-  <line x1="8" y1="192" x2="186" y2="192" stroke="currentColor" stroke-width="1" opacity="0.35"/>
-  <!-- GARVIT GOYAL text -->
-  <text x="97" y="217" text-anchor="middle" font-family="Georgia,Times New Roman,serif"
-        font-size="17" letter-spacing="5.5" fill="currentColor" font-weight="400" opacity="0.88">GARVIT GOYAL</text>
-</svg>
-
-<!-- RIBBON -->
 <div class="ribbon">
   <div class="ribbon-track">
     <span class="ribbon-item">⚡ Built by Garvit Goyal</span>
@@ -276,11 +276,18 @@
   </div>
 </div>
 
-<!-- HEADER -->
 <header class="header">
   <div class="header-inner">
     <div class="brand">
-      <div class="hdr-logo logo-container"></div>
+      <div class="hdr-logo">
+        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="9" y="8" width="42" height="48" rx="8" fill="var(--surface3)" stroke="var(--blue)" stroke-width="2.2"/>
+          <rect x="20" y="3" width="20" height="11" rx="5" fill="var(--surface)" stroke="var(--blue)" stroke-width="1.8"/>
+          <path d="M17 27 L26 36 L43 19" stroke="var(--green)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="17" y1="43" x2="43" y2="43" stroke="var(--border2)" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="40" cy="50" r="4" fill="var(--green)" opacity=".85"/>
+        </svg>
+      </div>
       <div class="brand-text">
         <span class="brand-name">Attendance Tracker</span>
         <span class="brand-sub">Plan Smart. Bunk Smarter.</span>
@@ -294,10 +301,17 @@
   </div>
 </header>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-logo-ring">
-    <div class="hero-logo-inner logo-container"></div>
+    <div class="hero-logo-inner">
+      <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="9" y="8" width="42" height="48" rx="8" fill="var(--surface3)" stroke="var(--blue)" stroke-width="2.2"/>
+        <rect x="20" y="3" width="20" height="11" rx="5" fill="var(--surface)" stroke="var(--blue)" stroke-width="1.8"/>
+        <path d="M17 27 L26 36 L43 19" stroke="var(--green)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="17" y1="43" x2="43" y2="43" stroke="var(--border2)" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="40" cy="50" r="4" fill="var(--green)" opacity=".85"/>
+      </svg>
+    </div>
   </div>
   <div class="hero-pill">⚡ Garvit's Attendance Tool</div>
   <h1 class="hero-h1">Know Exactly Where<br/><span class="grad">You Stand — Instantly</span></h1>
@@ -305,7 +319,6 @@
   <p class="hero-credit">Crafted with ♥ by <strong>Garvit Goyal</strong></p>
 </section>
 
-<!-- HOW IT WORKS -->
 <div class="how">
   <div class="how-grid">
     <div class="how-step"><div class="how-num">1</div><div class="how-text"><div class="how-title">Enter Your Data</div><div class="how-desc">Type total classes, attended, and your required %.</div></div></div>
@@ -314,60 +327,21 @@
   </div>
 </div>
 
-<!-- DIVIDER -->
-<div class="divider">
-  <div class="div-line"></div>
-  <div class="div-txt">Garvit's Tracker — Start Below</div>
-  <div class="div-line"></div>
-</div>
+<div class="divider"><div class="div-line"></div><div class="div-txt">Garvit's Tracker — Start Below</div><div class="div-line"></div></div>
 
-<!-- MAIN APP -->
 <main class="main">
-
   <section class="card card-input">
-    <div class="card-hdr">
-      <div><div class="card-eye">Step 01 — Input</div><div class="card-ttl">Enter Your Data</div></div>
-      <div class="card-ico">📋</div>
-    </div>
-    <div class="field">
-      <label class="f-lbl" for="total">Total Classes <em>(all held so far)</em></label>
-      <div class="f-row"><input type="number" id="total" class="f-input" placeholder="e.g. 60" min="0"/><span class="f-suf">classes</span></div>
-    </div>
-    <div class="field">
-      <label class="f-lbl" for="attended">Classes Attended <em>(by you)</em></label>
-      <div class="f-row"><input type="number" id="attended" class="f-input" placeholder="e.g. 48" min="0"/><span class="f-suf">classes</span></div>
-    </div>
-    <div class="field">
-      <label class="f-lbl" for="required">Required % <em>(default 75)</em></label>
-      <div class="f-row"><input type="number" id="required" class="f-input" placeholder="75" min="0" max="100" value="75"/><span class="f-suf">%</span></div>
-    </div>
+    <div class="card-hdr"><div><div class="card-eye">Step 01 — Input</div><div class="card-ttl">Enter Your Data</div></div><div class="card-ico">📋</div></div>
+    <div class="field"><label class="f-lbl" for="total">Total Classes <em>(all held so far)</em></label><div class="f-row"><input type="number" id="total" class="f-input" placeholder="e.g. 60" min="0"/><span class="f-suf">classes</span></div></div>
+    <div class="field"><label class="f-lbl" for="attended">Classes Attended <em>(by you)</em></label><div class="f-row"><input type="number" id="attended" class="f-input" placeholder="e.g. 48" min="0"/><span class="f-suf">classes</span></div></div>
+    <div class="field"><label class="f-lbl" for="required">Required % <em>(default 75)</em></label><div class="f-row"><input type="number" id="required" class="f-input" placeholder="75" min="0" max="100" value="75"/><span class="f-suf">%</span></div></div>
     <div id="errBox" class="err-box" role="alert" aria-live="polite" hidden></div>
   </section>
 
   <section class="card card-status">
-    <div class="card-hdr">
-      <div><div class="card-eye">Step 02 — Results</div><div class="card-ttl">Your Standing</div></div>
-      <div class="card-ico">📊</div>
-    </div>
-    <div class="ring-outer">
-      <div class="ring-wrap">
-        <svg class="ring-svg" viewBox="0 0 120 120">
-          <circle class="ring-track" cx="60" cy="60" r="50"/>
-          <circle class="ring-fill" id="ringFill" cx="60" cy="60" r="50"/>
-        </svg>
-        <div class="ring-mid">
-          <span class="ring-pct" id="ringPct">—</span>
-          <span class="ring-lbl">attendance</span>
-        </div>
-      </div>
-    </div>
-    <div class="prog-sec">
-      <div class="prog-meta"><span>0%</span><span id="reqLbl">Required: 75%</span><span>100%</span></div>
-      <div class="prog-track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="progTrack">
-        <div class="prog-fill" id="progFill"></div>
-        <div class="prog-marker" id="progMarker" style="left:75%"><div class="prog-marker-lbl" id="markerLbl">75%</div></div>
-      </div>
-    </div>
+    <div class="card-hdr"><div><div class="card-eye">Step 02 — Results</div><div class="card-ttl">Your Standing</div></div><div class="card-ico">📊</div></div>
+    <div class="ring-outer"><div class="ring-wrap"><svg class="ring-svg" viewBox="0 0 120 120"><circle class="ring-track" cx="60" cy="60" r="50"/><circle class="ring-fill" id="ringFill" cx="60" cy="60" r="50"/></svg><div class="ring-mid"><span class="ring-pct" id="ringPct">—</span><span class="ring-lbl">attendance</span></div></div></div>
+    <div class="prog-sec"><div class="prog-meta"><span>0%</span><span id="reqLbl">Required: 75%</span><span>100%</span></div><div class="prog-track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="progTrack"><div class="prog-fill" id="progFill"></div><div class="prog-marker" id="progMarker" style="left:75%"><div class="prog-marker-lbl" id="markerLbl">75%</div></div></div></div>
     <div class="verdict" id="verdict"><div class="v-idle">↑ Enter your data to see results</div></div>
     <div class="stats">
       <div class="sbox"><span class="s-val" id="sPct">—</span><span class="s-key">Current %</span></div>
@@ -378,36 +352,28 @@
   </section>
 
   <section class="card card-sim">
-    <div class="card-hdr">
-      <div><div class="card-eye">Step 03 — Garvit's What-If Tool</div><div class="card-ttl">Future Class Simulator</div></div>
-      <div class="card-ico">🔮</div>
-    </div>
+    <div class="card-hdr"><div><div class="card-eye">Step 03 — Garvit's What-If Tool</div><div class="card-ttl">Future Class Simulator</div></div><div class="card-ico">🔮</div></div>
     <div class="sim-grid">
-      <div class="field" style="margin-bottom:0">
-        <label class="f-lbl" for="simAtt">Classes I'll <span style="color:var(--green);font-weight:800">attend</span> <em>(future)</em></label>
-        <div class="f-row"><input type="number" id="simAtt" class="f-input" placeholder="0" min="0"/><span class="f-suf">classes</span></div>
-      </div>
-      <div class="field" style="margin-bottom:0">
-        <label class="f-lbl" for="simBnk">Classes I'll <span style="color:var(--red);font-weight:800">bunk</span> <em>(future)</em></label>
-        <div class="f-row"><input type="number" id="simBnk" class="f-input" placeholder="0" min="0"/><span class="f-suf">classes</span></div>
-      </div>
+      <div class="field" style="margin-bottom:0"><label class="f-lbl" for="simAtt">Classes I'll <span style="color:var(--green);font-weight:800">attend</span> <em>(future)</em></label><div class="f-row"><input type="number" id="simAtt" class="f-input" placeholder="0" min="0"/><span class="f-suf">classes</span></div></div>
+      <div class="field" style="margin-bottom:0"><label class="f-lbl" for="simBnk">Classes I'll <span style="color:var(--red);font-weight:800">bunk</span> <em>(future)</em></label><div class="f-row"><input type="number" id="simBnk" class="f-input" placeholder="0" min="0"/><span class="f-suf">classes</span></div></div>
     </div>
     <div class="sim-result" id="simResult"><div class="sim-idle">Fill in your base data first, then simulate here</div></div>
   </section>
-
 </main>
 
-<!-- FOOTER -->
 <footer class="footer">
   <div class="footer-inner">
     <div class="f-brand">
-      <div class="f-logo-ring">
-        <div class="f-logo-inner logo-container"></div>
-      </div>
-      <div>
-        <div class="f-name">Garvit Goyal</div>
-        <div class="f-role">Creator of <strong>Attendance Tracker</strong></div>
-      </div>
+      <div class="f-logo-ring"><div class="f-logo-inner">
+        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="9" y="8" width="42" height="48" rx="8" fill="var(--surface3)" stroke="var(--blue)" stroke-width="2.2"/>
+          <rect x="20" y="3" width="20" height="11" rx="5" fill="var(--surface)" stroke="var(--blue)" stroke-width="1.8"/>
+          <path d="M17 27 L26 36 L43 19" stroke="var(--green)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="17" y1="43" x2="43" y2="43" stroke="var(--border2)" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="40" cy="50" r="4" fill="var(--green)" opacity=".85"/>
+        </svg>
+      </div></div>
+      <div><div class="f-name">Garvit Goyal</div><div class="f-role">Creator of <strong>Attendance Tracker</strong></div></div>
     </div>
     <div class="f-right">
       <div class="f-copy">© 2025 <strong>Garvit Goyal</strong>. All rights reserved.</div>
@@ -417,152 +383,188 @@
 </footer>
 
 <script>
-  /* ── Attendance Tracker by Garvit Goyal ── */
-  const $=id=>document.getElementById(id);
-  const elTot=$('total'),elAtt=$('attended'),elReq=$('required'),elErr=$('errBox');
-  const elRingFill=$('ringFill'),elRingPct=$('ringPct');
-  const elReqLbl=$('reqLbl'),elProgFill=$('progFill');
-  const elProgMark=$('progMarker'),elMarkerLbl=$('markerLbl');
-  const elProgTrack=$('progTrack'),elVerdict=$('verdict');
-  const elSPct=$('sPct'),elSGap=$('sGap'),elSAtt=$('sAtt'),elSTot=$('sTot');
-  const elSimAtt=$('simAtt'),elSimBnk=$('simBnk'),elSimResult=$('simResult');
-  const elThemeBtn=$('themeBtn'),elThemeIcon=$('themeIcon');
-  const CIRCUMF=2*Math.PI*50;
-  let state={total:null,attended:null,required:75,pct:null};
+const $=id=>document.getElementById(id);
+const elTot=$('total'),elAtt=$('attended'),elReq=$('required'),elErr=$('errBox');
+const elRingFill=$('ringFill'),elRingPct=$('ringPct');
+const elReqLbl=$('reqLbl'),elProgFill=$('progFill');
+const elProgMark=$('progMarker'),elMarkerLbl=$('markerLbl');
+const elProgTrack=$('progTrack'),elVerdict=$('verdict');
+const elSPct=$('sPct'),elSGap=$('sGap'),elSAtt=$('sAtt'),elSTot=$('sTot');
+const elSimAtt=$('simAtt'),elSimBnk=$('simBnk'),elSimResult=$('simResult');
+const elThemeBtn=$('themeBtn'),elThemeIcon=$('themeIcon');
+const CIRCUMF=2*Math.PI*50;
+let state={total:null,attended:null,required:75,pct:null};
 
-  /* ── Inject SVG logo into all .logo-container elements ── */
-  function injectLogos(){
-    const tpl = $('logoTpl');
-    document.querySelectorAll('.logo-container').forEach(container=>{
-      const clone = tpl.cloneNode(true);
-      clone.removeAttribute('id');
-      clone.style.display='block';
-      clone.style.width='100%';
-      clone.style.height='100%';
-      clone.classList.add('logo-svg');
-      container.innerHTML='';
-      container.appendChild(clone);
-    });
+/* ── PWA: Inline manifest + service worker via Blob ── */
+const ICON192='iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAIAAADdvvtQAAAFU0lEQVR4nO2cy41lRRQE04W3YzkWYAMOsMQffMExPIHFoAGG5nXde6tOVp4KKXYzUueJCqnn+/T64QvAbWRfANHIvgCikX0BRCP7AohG9gUQjewLIBrZF0A0si+AaGRfANHIvmApP//2xw7YPaxD9gVLsadDQNnY0yGgbOzpEFA29nQICOAdsi+AaGRfANHIvgCikX0BRCP7AohG9gWf0v63x9F/BCD7gid+7dtWH7j/jbIveOg3wnLj02RfcILlxqfJvuAEy41Pk33BCZYbnyb7ghMsNz5N9gVT1Nv3HHuF7AuOVd/jCtkXHKu+xxWyLzhWfY8rZF8A0ci+AKKRfQFEI/sCiEb2BRCN7AsgGtkXQDSyL4BoZF+wlJG/rSzA7mEdsi9Yij0dAlr1ijXn2dOxH7v6i6rrYW++NAFNRF0Pe/OlCWgi6nrYgRAQ5HlW18Oi+fL7r5+yiWcV6CCgcUbSISAC+pjxegiIgL7nUj0ERED/4mo9BERAf3OjHgIioL+4Vw8BEdD9dAiIgJ7WQ0BHB/S8HgI6N6Ap9RDQoQEtSsfoWQXWCOgrS+txeVaBOAJa923L7lkF+g4PqKYel2cVGDw5oLJ6XJ5VIPHYgMrSMXpWgcczAyqux+VZBSoPDKi+HpdnFdg8KqDKX/Ts4FkFTs8JyFiPy7MKtB4SkLcel2cVmD0hIG86Rs8qkNs+oB3qcXlWgd/BwwoUr2CTesY9z0UFimcFtFtD9l/03PM8FxWInhjQPg3tVs+457mowPXcgHZoaMN6xj3PRQW6pwfkbWjDdC55nosKjK8IyNXQtvWMe56LCqQvCqi4oT2/bd3wPBcVqF8XUFlD+9cz7nkuKrC/NKCChiLqGfc8F63+AuOH7fk2KfWMe56L9jlswxdKSeeS57lon8N2e6qsesY9z0VbHbbJg01Jp7ieS54not0Osz9baD1XPc9CGx5mfLzcem54noL2PMzyhNH13PP8HG17WPFDRqfzxPNDtPNhZS/aoJ4nnp+gzQ9b/a5T0tmhnoeeb6P9D1v3up3qee75Hoo4bMUbN6tniucbKOWwuS/dr55Znq+ioMNmPXa/dOZ6voSyDnv+6l3rmet5HMUdNuu7T7N6pnseRImHUU+N5xEUehj11Hj+FOUeRj01nt+j6MNIp8bzG5R+GPXUeP4/1OAw6qnx/CHqcRj11Hj+L2pz2OH1lHn+DnU67OR6Kj3/EzU77Mx06j1/Q/0OO7Oees9fUcvDDqzH4vnVNaBXzsdVpXtW18NeaR+6GOpZXQ/7yjn1uDyr62EHQkCQ51ldDzsQAoI8z+p62IEQEOR5VtfDDoSAIM+zuh52IAQEeZ7V9bADISDI86zdDvvxp1/gPQREQAREQAREQKEQEAEREAEREAGFQkD8OVAfz+p62IEQEOR5VtfDDoSAIM+zuh52IAQEeZ7V9bADIaBDmfVf9AnoIFZ83gMBHcG6D50hoP4s/dgrAmrO6g/eI6DO3KjnakME1Jbb9VxqqG1AUBOQBdkXtOdhPZs3JPuC9hAQPIKA4BEEBPeZUs/ODcm+oD2N63kRUAEEBI8gIHgEAcFTutbzIqAaCAie0rKeFwFV0q+eV0RAH/4rhVAu1RPx714IaNOGvv18u38C2pGRdAiIgEZjevOjdv8ElI3dPwFlY/dPQNnY/ccHBDsj+wKIRvYFEI3sCyAa2RdANLIvgGhkXwDRyL4AopF9AUQj+wKIRvYFEI3sCyAa2RdANLIvgGhkXwDRyL4AopF9AUQj+wKIRvYFEI3sCyAa2RdANLIvgGhkXwDRyL4AopF9AUQj+wKI5k9KdMuXjxGs0QAAAABJRU5ErkJggg==';
+const ICON512='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';
+
+(function setupPWA(){
+  // 1. Inject manifest as blob URL
+  const manifest={
+    name:'Attendance Tracker by Garvit Goyal',
+    short_name:'AttTracker',
+    description:'Track your attendance. By Garvit Goyal.',
+    start_url:location.pathname,
+    display:'standalone',
+    background_color:'#04060a',
+    theme_color:'#4da3ff',
+    orientation:'portrait-primary',
+    icons:[
+      {src:'data:image/png;base64,'+ICON192,sizes:'192x192',type:'image/png',purpose:'any maskable'},
+      {src:'data:image/png;base64,'+ICON512,sizes:'512x512',type:'image/png',purpose:'any maskable'}
+    ]
+  };
+  const blob=new Blob([JSON.stringify(manifest)],{type:'application/manifest+json'});
+  const murl=URL.createObjectURL(blob);
+  document.getElementById('pwaManifest').setAttribute('href',murl);
+
+  // 2. Register inline service worker via blob
+  if('serviceWorker' in navigator){
+    const swCode=`
+const CACHE='garvit-att-v1';
+self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.add('/')));self.skipWaiting();});
+self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(n=>n!==CACHE).map(n=>caches.delete(n)))));self.clients.claim();});
+self.addEventListener('fetch',e=>{e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request)));});
+`;
+    const swBlob=new Blob([swCode],{type:'application/javascript'});
+    const swUrl=URL.createObjectURL(swBlob);
+    navigator.serviceWorker.register(swUrl,{scope:'/'}).catch(()=>{});
   }
+})();
 
-  /* ── Update logo color for current theme ── */
-  function updateLogoColor(theme){
-    document.querySelectorAll('.logo-svg').forEach(svg=>{
-      svg.style.color = theme==='dark' ? '#ffffff' : '#0a0f17';
-    });
+/* ── Install Banner ── */
+let deferredPrompt=null;
+const banner=$('installBanner');
+const INSTALL_KEY='garvit_pwa_dismissed_v1';
+
+window.addEventListener('beforeinstallprompt',e=>{
+  e.preventDefault();
+  deferredPrompt=e;
+  if(!localStorage.getItem(INSTALL_KEY)){
+    setTimeout(()=>banner.classList.add('show'),2200);
   }
+});
+$('installAccept').addEventListener('click',async()=>{
+  if(!deferredPrompt)return;
+  deferredPrompt.prompt();
+  await deferredPrompt.userChoice;
+  localStorage.setItem(INSTALL_KEY,'1');
+  deferredPrompt=null;
+  hideBanner();
+});
+function hideBanner(){banner.classList.remove('show');localStorage.setItem(INSTALL_KEY,'1');}
+$('installDismiss').addEventListener('click',hideBanner);
+$('installLater').addEventListener('click',hideBanner);
+window.addEventListener('appinstalled',()=>{hideBanner();deferredPrompt=null;});
 
-  /* Maths */
-  const calcPct=(a,t)=>t===0?0:Math.min(100,Math.round(a/t*10000)/100);
-  const calcBunk=(a,t,r)=>r===0?Infinity:Math.floor((a-(r/100)*t)/(r/100));
-  const calcNeed=(a,t,r)=>r>=100?Infinity:Math.ceil(((r/100)*t-a)/(1-r/100));
+/* ── Maths ── */
+const calcPct=(a,t)=>t===0?0:Math.min(100,Math.round(a/t*10000)/100);
+const calcBunk=(a,t,r)=>r===0?Infinity:Math.floor((a-(r/100)*t)/(r/100));
+const calcNeed=(a,t,r)=>r>=100?Infinity:Math.ceil(((r/100)*t-a)/(1-r/100));
 
-  /* Validation */
-  function validate(){
-    const t=elTot.value.trim(),a=elAtt.value.trim(),r=elReq.value.trim();
-    [elTot,elAtt,elReq].forEach(e=>e.classList.remove('err'));
-    elErr.setAttribute('hidden','');
-    if(!t&&!a)return null;
-    const total=Number(t),attended=Number(a),required=r===''?75:Number(r);
-    if(total<0||attended<0){if(total<0)elTot.classList.add('err');if(attended<0)elAtt.classList.add('err');return showErr('Values cannot be negative.'),null}
-    if(!Number.isInteger(total)||!Number.isInteger(attended))return showErr('Enter whole numbers — no decimals.'),null;
-    if(attended>total){elAtt.classList.add('err');return showErr('Attended cannot exceed total.'),null}
-    if(required<0||required>100){elReq.classList.add('err');return showErr('Required % must be 0–100.'),null}
-    return{total,attended,required};
+/* ── Validation ── */
+function validate(){
+  const t=elTot.value.trim(),a=elAtt.value.trim(),r=elReq.value.trim();
+  [elTot,elAtt,elReq].forEach(e=>e.classList.remove('err'));
+  elErr.setAttribute('hidden','');
+  if(!t&&!a)return null;
+  const total=Number(t),attended=Number(a),required=r===''?75:Number(r);
+  if(total<0||attended<0){if(total<0)elTot.classList.add('err');if(attended<0)elAtt.classList.add('err');return showErr('Values cannot be negative.'),null}
+  if(!Number.isInteger(total)||!Number.isInteger(attended))return showErr('Enter whole numbers — no decimals.'),null;
+  if(attended>total){elAtt.classList.add('err');return showErr('Attended cannot exceed total.'),null}
+  if(required<0||required>100){elReq.classList.add('err');return showErr('Required % must be 0–100.'),null}
+  return{total,attended,required};
+}
+function showErr(m){elErr.textContent=m;elErr.removeAttribute('hidden')}
+
+/* ── Ring ── */
+function setRing(pct,req){
+  elRingFill.style.strokeDashoffset=CIRCUMF*(1-pct/100);
+  const c=pct>=req?'var(--green)':pct>=req*.85?'var(--gold)':'var(--red)';
+  const g=pct>=req?'var(--green)':pct>=req*.85?'rgba(255,192,64,.5)':'var(--red)';
+  elRingFill.style.stroke=c;elRingFill.style.filter=`drop-shadow(0 0 8px ${g})`;
+  elRingPct.textContent=pct.toFixed(1)+'%';
+}
+function resetRing(){elRingFill.style.strokeDashoffset=CIRCUMF;elRingFill.style.stroke='var(--blue)';elRingFill.style.filter='drop-shadow(0 0 8px var(--blue-glow))';elRingPct.textContent='—'}
+
+/* ── Bar ── */
+function setBar(pct,req){
+  elProgFill.style.width=pct+'%';elProgMark.style.left=req+'%';elMarkerLbl.textContent=req+'%';
+  elReqLbl.textContent='Required: '+req+'%';elProgTrack.setAttribute('aria-valuenow',pct);
+  elProgFill.style.background=pct>=req?'linear-gradient(90deg,var(--green),#80ffc0)':pct>=req*.85?'linear-gradient(90deg,var(--gold),#ffe080)':'linear-gradient(90deg,var(--red),#ff9090)';
+}
+function resetBar(){elProgFill.style.width='0%'}
+
+/* ── Verdict ── */
+function setVerdict(pct,total,attended,req){
+  if(pct>=req){
+    const n=calcBunk(attended,total,req);
+    elVerdict.className='verdict safe';
+    elVerdict.innerHTML=`<span class="v-ico">🎉</span><div class="v-msg">You can bunk ${n} class${n!==1?'es':''}!</div><div class="v-sub">Bunking ${n+1}+ drops you below ${req}% — stay smart like Garvit!</div>`;
+  }else{
+    const n=calcNeed(attended,total,req);const inf=n===Infinity||n>9999;
+    elVerdict.className='verdict warn';
+    elVerdict.innerHTML=`<span class="v-ico">⚠️</span><div class="v-msg">${inf?'Cannot reach required %':`Attend ${n} more class${n!==1?'es':''} in a row`}</div><div class="v-sub">${inf?'Required is 100% — zero absences allowed.':`${n} consecutive class${n!==1?'es':''} needed to hit ${req}%`}</div>`;
   }
-  function showErr(m){elErr.textContent=m;elErr.removeAttribute('hidden')}
+}
+function resetVerdict(){elVerdict.className='verdict';elVerdict.innerHTML='<div class="v-idle">↑ Enter your data to see results</div>'}
 
-  /* Ring */
-  function setRing(pct,req){
-    elRingFill.style.strokeDashoffset=CIRCUMF*(1-pct/100);
-    const c=pct>=req?'var(--green)':pct>=req*.85?'var(--gold)':'var(--red)';
-    const g=pct>=req?'var(--green)':pct>=req*.85?'rgba(255,192,64,.5)':'var(--red)';
-    elRingFill.style.stroke=c;elRingFill.style.filter=`drop-shadow(0 0 8px ${g})`;
-    elRingPct.textContent=pct.toFixed(1)+'%';
-  }
-  function resetRing(){elRingFill.style.strokeDashoffset=CIRCUMF;elRingFill.style.stroke='var(--blue)';elRingFill.style.filter='drop-shadow(0 0 8px var(--blue-glow))';elRingPct.textContent='—'}
+/* ── Stats ── */
+function setStats(pct,att,tot,req){
+  const gap=(pct-req).toFixed(1);
+  elSPct.textContent=pct.toFixed(2)+'%';
+  elSGap.textContent=(gap>0?'+':'')+gap+'%';elSGap.style.color=gap>=0?'var(--green)':'var(--red)';
+  elSAtt.textContent=att;elSTot.textContent=tot;
+}
+function resetStats(){[elSPct,elSGap,elSAtt,elSTot].forEach(e=>{e.textContent='—';e.style.color=''})}
 
-  /* Bar */
-  function setBar(pct,req){
-    elProgFill.style.width=pct+'%';elProgMark.style.left=req+'%';elMarkerLbl.textContent=req+'%';
-    elReqLbl.textContent='Required: '+req+'%';elProgTrack.setAttribute('aria-valuenow',pct);
-    elProgFill.style.background=pct>=req?'linear-gradient(90deg,var(--green),#80ffc0)':pct>=req*.85?'linear-gradient(90deg,var(--gold),#ffe080)':'linear-gradient(90deg,var(--red),#ff9090)';
-  }
-  function resetBar(){elProgFill.style.width='0%'}
+/* ── Sim ── */
+function runSim(){
+  const s=state;
+  if(s.total===null){elSimResult.innerHTML='<div class="sim-idle">Fill in your base data first, then simulate here</div>';return}
+  const ea=Math.max(0,parseInt(elSimAtt.value)||0),eb=Math.max(0,parseInt(elSimBnk.value)||0);
+  const nt=s.total+ea+eb,na=s.attended+ea,np=calcPct(na,nt);
+  const diff=parseFloat((np-s.pct).toFixed(2));
+  const dir=diff>0?'up':diff<0?'down':'same';
+  const arrow=diff>0?'▲':diff<0?'▼':'●';
+  const ds=diff===0?'No change':(diff>0?'+':'')+diff.toFixed(2)+'%';
+  const ok=np>=s.required;
+  elSimResult.innerHTML=`<div class="sim-out"><div class="sim-col"><span class="sim-val ${dir}">${np.toFixed(2)}%</span><span class="sim-key">Predicted %</span><span class="sim-chg ${dir}">${arrow} ${ds}</span></div><div class="sim-col"><span class="sim-val">${na}/${nt}</span><span class="sim-key">New Ratio</span><span class="sim-chg same">after simulation</span></div><div class="sim-col"><span class="sim-val" style="color:${ok?'var(--green)':'var(--red)'}">${ok?'✅ Safe':'❌ Low'}</span><span class="sim-key">vs ${s.required}% req</span><span class="sim-chg same">Garvit's verdict</span></div></div>`;
+}
+function resetAll(){resetRing();resetBar();resetVerdict();resetStats()}
 
-  /* Verdict */
-  function setVerdict(pct,total,attended,req){
-    if(pct>=req){
-      const n=calcBunk(attended,total,req);
-      elVerdict.className='verdict safe';
-      elVerdict.innerHTML=`<span class="v-ico">🎉</span><div class="v-msg">You can bunk ${n} class${n!==1?'es':''}!</div><div class="v-sub">Bunking ${n+1}+ drops you below ${req}% — stay smart like Garvit!</div>`;
-    }else{
-      const n=calcNeed(attended,total,req);const inf=n===Infinity||n>9999;
-      elVerdict.className='verdict warn';
-      elVerdict.innerHTML=`<span class="v-ico">⚠️</span><div class="v-msg">${inf?'Cannot reach required %':`Attend ${n} more class${n!==1?'es':''} in a row`}</div><div class="v-sub">${inf?'Required is 100% — zero absences allowed.':`${n} consecutive class${n!==1?'es':''} needed to hit ${req}%`}</div>`;
-    }
-  }
-  function resetVerdict(){elVerdict.className='verdict';elVerdict.innerHTML='<div class="v-idle">↑ Enter your data to see results</div>'}
+/* ── Compute ── */
+function compute(){
+  const v=validate();
+  if(!v){if(!elTot.value&&!elAtt.value)resetAll();return}
+  const{total,attended,required}=v;
+  if(total===0){resetAll();elReqLbl.textContent='Required: '+required+'%';elVerdict.className='verdict';elVerdict.innerHTML='<div class="v-idle">Total must be greater than 0</div>';return}
+  const pct=calcPct(attended,total);state={total,attended,required,pct};
+  setRing(pct,required);setBar(pct,required);setVerdict(pct,total,attended,required);setStats(pct,attended,total,required);runSim();
+}
 
-  /* Stats */
-  function setStats(pct,att,tot,req){
-    const gap=(pct-req).toFixed(1);
-    elSPct.textContent=pct.toFixed(2)+'%';
-    elSGap.textContent=(gap>0?'+':'')+gap+'%';elSGap.style.color=gap>=0?'var(--green)':'var(--red)';
-    elSAtt.textContent=att;elSTot.textContent=tot;
-  }
-  function resetStats(){[elSPct,elSGap,elSAtt,elSTot].forEach(e=>{e.textContent='—';e.style.color=''})}
+/* ── Storage ── */
+const LS='garvit_att_v3';
+function save(){try{localStorage.setItem(LS,JSON.stringify({total:elTot.value,attended:elAtt.value,required:elReq.value}))}catch(_){}}
+function load(){try{const d=JSON.parse(localStorage.getItem(LS));if(!d)return;if(d.total!==undefined)elTot.value=d.total;if(d.attended!==undefined)elAtt.value=d.attended;if(d.required!==undefined)elReq.value=d.required}catch(_){}}
 
-  /* Simulator */
-  function runSim(){
-    const s=state;
-    if(s.total===null){elSimResult.innerHTML='<div class="sim-idle">Fill in your base data first, then simulate here</div>';return}
-    const ea=Math.max(0,parseInt(elSimAtt.value)||0),eb=Math.max(0,parseInt(elSimBnk.value)||0);
-    const nt=s.total+ea+eb,na=s.attended+ea,np=calcPct(na,nt);
-    const diff=parseFloat((np-s.pct).toFixed(2));
-    const dir=diff>0?'up':diff<0?'down':'same';
-    const arrow=diff>0?'▲':diff<0?'▼':'●';
-    const ds=diff===0?'No change':(diff>0?'+':'')+diff.toFixed(2)+'%';
-    const ok=np>=s.required;
-    elSimResult.innerHTML=`<div class="sim-out"><div class="sim-col"><span class="sim-val ${dir}">${np.toFixed(2)}%</span><span class="sim-key">Predicted %</span><span class="sim-chg ${dir}">${arrow} ${ds}</span></div><div class="sim-col"><span class="sim-val">${na}/${nt}</span><span class="sim-key">New Ratio</span><span class="sim-chg same">after simulation</span></div><div class="sim-col"><span class="sim-val" style="color:${ok?'var(--green)':'var(--red)'}">${ok?'✅ Safe':'❌ Low'}</span><span class="sim-key">vs ${s.required}% req</span><span class="sim-chg same">Garvit's verdict</span></div></div>`;
-  }
+/* ── Theme ── */
+const TK='garvit_theme';
+function applyTheme(t){
+  document.documentElement.setAttribute('data-theme',t);
+  elThemeIcon.textContent=t==='dark'?'☀':'☽';
+  const m=document.getElementById('themeColorMeta');
+  if(m)m.setAttribute('content',t==='dark'?'#04060a':'#f0f4fa');
+  try{localStorage.setItem(TK,t)}catch(_){}
+}
+function initTheme(){let s;try{s=localStorage.getItem(TK)}catch(_){}applyTheme(s||(window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'))}
+elThemeBtn.addEventListener('click',()=>applyTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark'));
 
-  function resetAll(){resetRing();resetBar();resetVerdict();resetStats()}
+[elTot,elAtt,elReq].forEach(el=>el.addEventListener('input',()=>{compute();save()}));
+[elSimAtt,elSimBnk].forEach(el=>el.addEventListener('input',runSim));
 
-  /* Compute */
-  function compute(){
-    const v=validate();
-    if(!v){if(!elTot.value&&!elAtt.value)resetAll();return}
-    const{total,attended,required}=v;
-    if(total===0){resetAll();elReqLbl.textContent='Required: '+required+'%';elVerdict.className='verdict';elVerdict.innerHTML='<div class="v-idle">Total must be greater than 0</div>';return}
-    const pct=calcPct(attended,total);state={total,attended,required,pct};
-    setRing(pct,required);setBar(pct,required);setVerdict(pct,total,attended,required);setStats(pct,attended,total,required);runSim();
-  }
-
-  /* Storage */
-  const LS='garvit_att_v3';
-  function save(){try{localStorage.setItem(LS,JSON.stringify({total:elTot.value,attended:elAtt.value,required:elReq.value}))}catch(_){}}
-  function load(){try{const d=JSON.parse(localStorage.getItem(LS));if(!d)return;if(d.total!==undefined)elTot.value=d.total;if(d.attended!==undefined)elAtt.value=d.attended;if(d.required!==undefined)elReq.value=d.required}catch(_){}}
-
-  /* Theme */
-  const TK='garvit_theme';
-  function applyTheme(t){
-    document.documentElement.setAttribute('data-theme',t);
-    elThemeIcon.textContent=t==='dark'?'☀':'☽';
-    try{localStorage.setItem(TK,t)}catch(_){}
-    updateLogoColor(t);
-  }
-  function initTheme(){let s;try{s=localStorage.getItem(TK)}catch(_){}applyTheme(s||(window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'))}
-  elThemeBtn.addEventListener('click',()=>applyTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark'));
-
-  [elTot,elAtt,elReq].forEach(el=>el.addEventListener('input',()=>{compute();save()}));
-  [elSimAtt,elSimBnk].forEach(el=>el.addEventListener('input',runSim));
-
-  /* Boot */
-  injectLogos();
-  initTheme();
-  load();
-  compute();
+initTheme();load();compute();
 </script>
 </body>
 </html>
